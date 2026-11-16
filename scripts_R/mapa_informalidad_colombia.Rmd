@@ -1,0 +1,148 @@
+---
+title: "Visualización Espacial en R — Mapa Temático de Informalidad Laboral (GEIH 2026)"
+author: "Julián Steven Duarte & Julián Camilo Jiménez"
+date: "Noviembre 2026"
+output:
+  html_document:
+    theme: flatly
+    toc: true
+    toc_depth: 2
+    number_sections: true
+---
+
+# Universidad Externado de Colombia · Visualización I
+## Proyecto 3: Narrativa Visual Integrada — Componente Geoespacial en R
+**Docentes:** Adriana Pineda Barón & Paola Moreno  
+**Fuente de Datos:** Gran Encuesta Integrada de Hogares (GEIH 2026) — DANE & Cartografía Oficial IGAC/DANE  
+
+---
+
+# 1. Encuadre Cartográfico y Justificación Territorial
+
+El análisis de la informalidad en Colombia demuestra que las políticas universales fracasan porque ignoran las asimetrías del territorio. Mientras Bogotá D.C. y la región andina concentran grandes volúmenes de ocupación formal, la periferia del país (departamentos de la Orinoquía, Amazonía y sur del Pacífico) experimenta una desprotección estructural superior al 65%.
+
+Este mapa temático coroplético responde a la necesidad ciudadana de visualizar **dónde se ubican las zonas de mayor precariedad laboral** para que un joven profesional o trabajador comprenda los desafíos de empleabilidad según su ubicación geográfica.
+
+---
+
+# 2. Preparación del Entorno y Carga de Paquetes
+
+```{r setup, message=FALSE, warning=FALSE}
+library(sf)
+library(dplyr)
+library(ggplot2)
+library(scales)
+
+# Configurar directorio de trabajo relativo
+setwd(".")
+```
+
+---
+
+# 3. Carga de Datos y Capa Geográfica Oficial
+
+Utilizamos el archivo GeoJSON optimizado de departamentos de Colombia (`colombia_departamentos.geojson`, origen IGAC/DANE) y la tabla de indicadores departamentales calculados desde la GEIH 2026.
+
+```{r carga_datos, message=FALSE, warning=FALSE}
+# 1. Cargar capa geográfica departamental
+dptos_sf <- st_read("../Datos/colombia_departamentos.geojson", quiet = TRUE)
+
+# 2. Cargar tabla de informalidad departamental GEIH 2026
+df_geih <- read.csv("../Datos/geih_2026_departamentos.csv", encoding = "UTF-8", stringsAsFactors = FALSE)
+
+# Homologar nombres de departamentos
+nombre_map <- c(
+  "Amazonas" = "AMAZONAS", "Antioquia" = "ANTIOQUIA", "Arauca" = "ARAUCA",
+  "Atlántico" = "ATLÁNTICO", "Bogotá D.C." = "BOGOTÁ, D.C.", "Bolívar" = "BOLÍVAR",
+  "Boyacá" = "BOYACÁ", "Caldas" = "CALDAS", "Caquetá" = "CAQUETÁ", "Casanare" = "CASANARE",
+  "Cauca" = "CAUCA", "Cesar" = "CESAR", "Chocó" = "CHOCÓ", "Córdoba" = "CÓRDOBA",
+  "Cundinamarca" = "CUNDINAMARCA", "Guainía" = "GUAINÍA", "Guaviare" = "GUAVIARE",
+  "Huila" = "HUILA", "La Guajira" = "LA GUAJIRA", "Magdalena" = "MAGDALENA", "Meta" = "META",
+  "Nariño" = "NARIÑO", "Norte de Santander" = "NORTE DE SANTANDER", "Putumayo" = "PUTUMAYO",
+  "Quindío" = "QUINDIO", "Risaralda" = "RISARALDA",
+  "San Andrés" = "ARCHIPIÉLAGO DE SAN ANDRÉS, PROVIDENCIA Y SANTA CATALINA",
+  "Santander" = "SANTANDER", "Sucre" = "SUCRE", "Tolima" = "TOLIMA",
+  "Valle del Cauca" = "VALLE DEL CAUCA", "Vaupés" = "VAUPÉS", "Vichada" = "VICHADA"
+)
+
+df_geih$DPTO_CN <- nombre_map[df_geih$Nombre_Departamento]
+
+# Unir datos espaciales y socioeconómicos
+mapa_datos <- dptos_sf %>%
+  left_join(df_geih, by = "DPTO_CN")
+```
+
+---
+
+# 4. Construcción del Mapa Temático (Choropleth Map)
+
+Aplicamos principios de diseño visual y accesibilidad cromática:
+- **Gradiente perceptualmente ordenado:** Del azul formal (`#2B5C8F`) a rojos y vinos de alerta crítica (`#900C3F`).
+- **Etiquetas directas (Gestalt):** Identificamos los valores numéricos exactos de las zonas críticas (Guaviare al 75.7%, Casanare al 66.5%, Bogotá al 64.1%).
+- **Eliminación de ruido visual (*chartjunk*):** Fondo neutro `#F8F9FA` y división nítida entre departamentos.
+
+```{r mapa_ggplot, fig.width=9, fig.height=11, dpi=300, message=FALSE, warning=FALSE}
+# Puntos centroides para anotación directa en departamentos clave
+deptos_destacados <- c("GUAVIARE", "CASANARE", "BOGOTÁ, D.C.", "NARIÑO")
+labels_data <- mapa_datos %>%
+  filter(DPTO_CN %in% deptos_destacados) %>%
+  st_centroid()
+
+coords <- st_coordinates(labels_data)
+labels_data$X <- coords[, 1]
+labels_data$Y <- coords[, 2]
+labels_data$LabelTexto <- paste0(labels_data$Nombre_Departamento, "\n", round(labels_data$Tasa_Informalidad, 1), "%")
+
+# Graficar
+p <- ggplot(data = mapa_datos) +
+  geom_sf(aes(fill = Tasa_Informalidad), color = "#FFFFFF", size = 0.3) +
+  scale_fill_gradientn(
+    colors = c("#2B5C8F", "#4A90E2", "#F5A623", "#D0021B", "#900C3F"),
+    values = rescale(c(38, 50, 55, 65, 76)),
+    name = "Tasa de\nInformalidad (%)",
+    labels = function(x) paste0(round(x, 0), "%"),
+    guide = guide_colorbar(
+      barwidth = 1.2,
+      barheight = 10,
+      title.position = "top",
+      ticks.colour = "white"
+    )
+  ) +
+  geom_label(
+    data = labels_data,
+    aes(x = X, y = Y, label = LabelTexto),
+    size = 3.2,
+    fontface = "bold",
+    color = "#1A252C",
+    fill = alpha("#FFFFFF", 0.85),
+    label.padding = unit(0.2, "lines"),
+    linewidth = 0.3
+  ) +
+  labs(
+    title = "Colombia: Brecha Territorial de la Informalidad Laboral (2026)",
+    subtitle = "Tasa de informalidad por departamento (%) — La periferia enfrenta hasta un 75.7% de desprotección",
+    caption = "Fuente: Elaboración propia a partir de microdatos GEIH 2026 (DANE) y cartografía oficial IGAC (EPSG:9377)."
+  ) +
+  theme_void() +
+  theme(
+    plot.background = element_rect(fill = "#F8F9FA", color = NA),
+    panel.background = element_rect(fill = "#F8F9FA", color = NA),
+    plot.title = element_text(face = "bold", size = 15, color = "#1E293B", hjust = 0, margin = margin(t = 10, b = 4)),
+    plot.subtitle = element_text(size = 11, color = "#475569", hjust = 0, margin = margin(b = 15)),
+    plot.caption = element_text(size = 8.5, color = "#64748B", hjust = 0, margin = margin(t = 15, b = 10)),
+    legend.position = "right",
+    legend.title = element_text(face = "bold", size = 9.5, color = "#1E293B"),
+    legend.text = element_text(size = 8.5, color = "#334155"),
+    plot.margin = margin(15, 20, 15, 20)
+  )
+
+p
+```
+
+---
+
+# 5. Hallazgos Territoriales Clave para la Ciudadanía
+
+1. **La brecha centro-periferia:** Departamentos como **Guaviare (75.7%)** y **Casanare (66.5%)** presentan las tasas de informalidad más críticas del país. En estas zonas, 3 de cada 4 trabajadores no cotizan a pensión ni cuentan con cobertura en salud laboral.
+2. **La paradoja de las capitales:** Aunque Bogotá D.C. concentra las mayores sedes corporativas, registra una tasa de informalidad del **64.1%**, evidenciando que la densidad de trabajadores independientes y contratos por prestación de servicios precarizan el empleo calificado.
+3. **Implicación ciudadana:** Un joven egresado que busca empleo en departamentos periféricos tiene una probabilidad drásticamente menor de acceder a un contrato formal que uno ubicado en el eje cafetero o Antioquia, lo que exige considerar esquemas de movilidad laboral o teletrabajo.
