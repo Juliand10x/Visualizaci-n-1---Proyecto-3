@@ -2,6 +2,7 @@
 **Proyecto 3: Narrativa Visual Integrada — Visualización I**  
 **Universidad Externado de Colombia**  
 **Equipo:** Julián Steven Duarte & Julián Camilo Jiménez  
+**Repositorio GitHub:** [Visualizaci-n-1---Proyecto-3](https://github.com/Juliand10x/Visualizaci-n-1---Proyecto-3)  
 
 ---
 
@@ -10,15 +11,13 @@ Este archivo describe paso a paso cómo reproducir de forma 100% autónoma todos
 ## 1. Requisitos y Dependencias del Sistema
 
 ### Python (Versión 3.10 o superior)
-Asegúrate de contar con las siguientes librerías instaladas:
 ```bash
 pip install pandas numpy matplotlib seaborn plotly nbconvert
 ```
 
 ### R (Versión 4.2 o superior)
-Asegúrate de contar con los paquetes espaciales y gráficos:
 ```r
-install.packages(c("sf", "dplyr", "ggplot2", "scales"))
+install.packages(c("sf", "dplyr", "ggplot2", "tmap", "classInt", "scales"))
 ```
 
 ### Power BI Desktop
@@ -46,11 +45,11 @@ Ejecuta el script en R desde la terminal:
 Rscript scripts_R/generar_mapa_colombia.R
 ```
 * O abre `scripts_R/mapa_informalidad_colombia.Rmd` en RStudio y haz clic en **Knit**.
-* **Salida esperada:** Se generará el mapa en alta resolución `figuras/mapa_informalidad_colombia_R.png`.
+* **Salida esperada:** Se generarán los mapas en alta resolución `figuras/mapa_informalidad_colombia_R.png` y `figuras/mapa_informalidad_tmap.png`.
 
 ### Paso 3: Actualizar Power BI
-* Sigue las instrucciones paso a paso detalladas en **`GUIA_POWER_BI.md`**.
-* Abre el archivo `.pbix` en Power BI Desktop, crea las medidas de promedio mensual y publica en tu área de trabajo de Power BI Service.
+* Consulta el manual **`GUIA_POWER_BI.md`**.
+* Abre `Equipo_Duarte_Jimenez_Proyecto3_Dashboard.pbix` en Power BI Desktop, crea las medidas de promedio mensual y publica en tu área de trabajo de Power BI Service.
 
 ---
 
@@ -59,7 +58,7 @@ Rscript scripts_R/generar_mapa_colombia.R
 1. **Dashboard en Power BI:** Archivo `.pbix` actualizado y enlace activo en Power BI Service.
 2. **Notebook de Jupyter:** `notebooks/Equipo_Duarte_Jimenez_Proyecto3_Visualizacion.ipynb` completamente ejecutado.
 3. **Archivo Interactivo HTML:** `figuras/visualizacion_interactiva_plotly.html`.
-4. **Script y Mapa de R:** `scripts_R/mapa_informalidad_colombia.Rmd` y `figuras/mapa_informalidad_colombia_R.png`.
+4. **Script y Mapa de R:** `scripts_R/mapa_informalidad_colombia.Rmd` y `figuras/mapa_informalidad_colombia_R.png` / `mapa_informalidad_tmap.png`.
 5. **Presentación Narrativa (10 Slides):** `documentos/Presentacion_Narrativa_10_Diapositivas.md` (exportable a PDF).
 6. **Guía de Sustentación Oral:** `documentos/Guia_Sustentacion_Proyecto3.md`.
 7. **Anexo Técnico de IA:** `documentos/Anexo_IA.md`.
