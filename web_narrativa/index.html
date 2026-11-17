@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Trampa Invisible del Empleo Calificado en Colombia | Narrativa Visual</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['"Space Grotesk"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#F0F9FF',
+                            100: '#E0F2FE',
+                            500: '#0284C7',
+                            700: '#0369A1',
+                            900: '#0C4A6E',
+                        },
+                        amber: {
+                            500: '#F59E0B',
+                        },
+                        rose: {
+                            500: '#E11D48',
+                            600: '#BE123C',
+                        },
+                        carbon: '#0F172A',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #0284C7 0%, #E11D48 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-pattern {
+            background-color: #0b1120;
+            background-image: radial-gradient(rgba(2, 132, 199, 0.15) 1px, transparent 1px), radial-gradient(rgba(225, 29, 72, 0.1) 1px, #0b1120 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-rose-500 selection:text-white">
+
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <span class="p-2 bg-gradient-to-tr from-sky-500 to-rose-500 rounded-lg text-white">
+                    <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
+                </span>
+                <div>
+                    <span class="font-display font-bold text-lg tracking-tight">Colombia Invisible</span>
+                    <span class="hidden sm:inline-block ml-2 px-2 py-0.5 text-xs bg-slate-800 text-slate-300 rounded-full border border-slate-700">GEIH 2026 DANE</span>
+                </div>
+            </div>
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
+                <a href="#gran-idea" class="hover:text-white transition">La Gran Idea</a>
+                <a href="#paradoja" class="hover:text-white transition">Paradoja Educativa</a>
+                <a href="#genero" class="hover:text-white transition">Brecha de Género</a>
+                <a href="#territorio" class="hover:text-white transition">Territorio (R)</a>
+                <a href="#interactivo" class="hover:text-white transition">Explorador (Plotly)</a>
+                <a href="#powerbi" class="hover:text-white transition">Power BI</a>
+            </nav>
+            <div class="flex items-center gap-3">
+                <a href="https://github.com/Juliand10x/Visualizaci-n-1---Proyecto-3" target="_blank" class="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition" title="Ver Repositorio GitHub">
+                    <i data-lucide="github" class="w-5 h-5"></i>
+                </a>
+                <a href="https://app.powerbi.com/links/gvbF1pi94p?ctid=3b944d9a-1051-4685-b09d-9a95ee2dbd99&pbi_source=linkShare" target="_blank" class="px-3.5 py-1.5 text-xs font-semibold bg-rose-600 hover:bg-rose-500 text-white rounded-lg shadow-sm transition flex items-center gap-1.5">
+                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                    <span>Ver en Power BI</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION (Audiencia y La Gran Idea) -->
+    <section class="hero-pattern text-white py-20 lg:py-28 relative overflow-hidden border-b border-slate-800">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800/80 border border-slate-700 text-sky-400 text-xs font-semibold mb-6">
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                <span>Proyecto 3: Narrativa Visual Integrada — Visualización 1</span>
+            </div>
+            
+            <h1 class="text-4xl sm:text-6xl font-display font-extrabold tracking-tight leading-tight mb-6">
+                La trampa invisible del <br class="hidden sm:inline">
+                <span class="gradient-text">empleo calificado en Colombia</span>
+            </h1>
+            
+            <p class="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed mb-10">
+                ¿Por qué cursar educación superior ya no garantiza un trabajo digno con seguridad social en nuestro país? Evidencia estadística de la <strong>GEIH 2026</strong> pensada para los jóvenes que ingresan al mercado laboral.
+            </p>
+
+            <!-- KPI Cards Strip -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto pt-4 text-left">
+                <div class="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl backdrop-blur-sm">
+                    <div class="flex items-center justify-between text-slate-400 text-xs font-medium uppercase tracking-wider mb-2">
+                        <span>Tasa Nacional Oficial</span>
+                        <i data-lucide="users" class="w-4 h-4 text-sky-400"></i>
+                    </div>
+                    <div class="text-3xl font-extrabold text-white">54.64%</div>
+                    <div class="text-xs text-slate-400 mt-1">~9.55 millones de ocupados informales mensuales</div>
+                </div>
+
+                <div class="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl backdrop-blur-sm">
+                    <div class="flex items-center justify-between text-slate-400 text-xs font-medium uppercase tracking-wider mb-2">
+                        <span>Educación Superior</span>
+                        <i data-lucide="graduation-cap" class="w-4 h-4 text-amber-400"></i>
+                    </div>
+                    <div class="text-3xl font-extrabold text-amber-400">61.27%</div>
+                    <div class="text-xs text-slate-400 mt-1">Más de 6 de cada 10 graduados en el rebusque</div>
+                </div>
+
+                <div class="bg-slate-900/80 border border-slate-800 p-5 rounded-2xl backdrop-blur-sm">
+                    <div class="flex items-center justify-between text-slate-400 text-xs font-medium uppercase tracking-wider mb-2">
+                        <span>Brecha Periférica</span>
+                        <i data-lucide="map-pin" class="w-4 h-4 text-rose-500"></i>
+                    </div>
+                    <div class="text-3xl font-extrabold text-rose-500">75.71%</div>
+                    <div class="text-xs text-slate-400 mt-1">Tasa máxima departamental (Guaviare)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 1: LA GRAN IDEA & AUDIENCIA CIUDADANA -->
+    <section id="gran-idea" class="py-16 bg-white border-b border-slate-200">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <div class="border-l-4 border-rose-500 pl-6 py-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-rose-600">La Gran Idea Ciudadana</span>
+                <blockquote class="text-2xl font-display font-bold text-slate-900 mt-2 leading-snug">
+                    "En Colombia, tener un título técnico o profesional ya no blinda contra la precariedad: 6 de cada 10 graduados están atrapados en el rebusque o sin pensión, una brecha que se dispara en las regiones periféricas y castiga doblemente a las mujeres por el trabajo de cuidado no remunerado."
+                </blockquote>
+            </div>
+
+            <div class="mt-8 grid sm:grid-cols-2 gap-6 bg-slate-50 p-6 rounded-2xl border border-slate-200">
+                <div>
+                    <h4 class="font-semibold text-slate-900 flex items-center gap-2 mb-2">
+                        <i data-lucide="target" class="w-4 h-4 text-sky-600"></i>
+                        Audiencia Ciudadana Delimitada
+                    </h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Jóvenes de 18 a 28 años, técnicos, tecnólogos y nuevos profesionales universitarios que buscan empleo formal digno en Colombia.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-slate-900 flex items-center gap-2 mb-2">
+                        <i data-lucide="help-circle" class="w-4 h-4 text-rose-600"></i>
+                        Pregunta Analítica Central
+                    </h4>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        ¿Por qué cursar educación superior ya no garantiza un empleo formal con seguridad social, y de qué forma la región y el género determinan las oportunidades reales de trabajo digno?
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCROLLYTELLING CONTAINER -->
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 py-16 space-y-28">
+
+        <!-- STEP 1: PARADOJA EDUCATIVA (PYTHON - SEABORN) -->
+        <article id="paradoja" class="scroll-mt-24">
+            <div class="flex items-center gap-2 text-sky-600 text-xs font-bold uppercase tracking-wider mb-2">
+                <i data-lucide="code-2" class="w-4 h-4"></i>
+                <span>Evidencia en Python • Seaborn I</span>
+            </div>
+            <h2 class="text-3xl font-display font-extrabold text-slate-900 tracking-tight mb-4">
+                1. La Paradoja: A mayor estudio, la informalidad no desaparece
+            </h2>
+            <p class="text-slate-600 leading-relaxed mb-6">
+                Históricamente se prometió que la educación superior era el pasaporte definitivo a un contrato laboral formal. La evidencia de la <strong>GEIH 2026</strong> desmitifica esta creencia: la tasa de informalidad en personas con educación superior asciende al <strong>61.27%</strong>, superando incluso a la secundaria y media técnica.
+            </p>
+
+            <div class="bg-white p-4 sm:p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <img src="assets/fig1_paradoja_educativa_seaborn.png" alt="Paradoja Educativa Seaborn" class="w-full h-auto rounded-xl border border-slate-100" loading="lazy">
+                <div class="mt-4 flex flex-col sm:flex-row sm:items-center justify-between text-xs text-slate-500 border-t border-slate-100 pt-3 gap-2">
+                    <span><strong>Fuente:</strong> DANE — GEIH 2026 (Semestre 1). Procesamiento en Python 3.</span>
+                    <span class="inline-flex items-center gap-1 text-slate-700 font-medium">
+                        <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-500"></i> 300 DPI • Títulos explicativos de hallazgo
+                    </span>
+                </div>
+            </div>
+        </article>
+
+        <!-- STEP 2: BRECHA DE GÉNERO (PYTHON - SEABORN) -->
+        <article id="genero" class="scroll-mt-24">
+            <div class="flex items-center gap-2 text-rose-600 text-xs font-bold uppercase tracking-wider mb-2">
+                <i data-lucide="split" class="w-4 h-4"></i>
+                <span>Evidencia en Python • Seaborn II</span>
+            </div>
+            <h2 class="text-3xl font-display font-extrabold text-slate-900 tracking-tight mb-4">
+                2. La Desigualdad de Género: El costo oculto del cuidado
+            </h2>
+            <p class="text-slate-600 leading-relaxed mb-6">
+                Al comparar mujeres y hombres con idéntico nivel de cualificación, la brecha estructural de género emerge con contundencia. Las mujeres enfrentan mayores barreras para acceder a empleos con cotización pensional completa debido a la sobrecarga de labores domésticas no remuneradas.
+            </p>
+
+            <div class="bg-white p-4 sm:p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <img src="assets/fig2_brecha_genero_educacion_seaborn.png" alt="Brecha de Género Seaborn" class="w-full h-auto rounded-xl border border-slate-100" loading="lazy">
+                <div class="mt-4 flex flex-col sm:flex-row sm:items-center justify-between text-xs text-slate-500 border-t border-slate-100 pt-3 gap-2">
+                    <span><strong>Gráfico Dumbbell:</strong> Distancia porcentual entre hombres y mujeres según nivel educativo.</span>
+                    <span class="inline-flex items-center gap-1 text-slate-700 font-medium">
+                        <i data-lucide="palette" class="w-3.5 h-3.5 text-sky-500"></i> Paleta accesible para daltónicos
+                    </span>
+                </div>
+            </div>
+        </article>
+
+        <!-- STEP 3: MAPA CARTOGRÁFICO TERRITORIAL (R - SF + TMAP / GGPLOT2) -->
+        <article id="territorio" class="scroll-mt-24">
+            <div class="flex items-center gap-2 text-amber-600 text-xs font-bold uppercase tracking-wider mb-2">
+                <i data-lucide="map" class="w-4 h-4"></i>
+                <span>Evidencia Espacial en R • sf & tmap</span>
+            </div>
+            <h2 class="text-3xl font-display font-extrabold text-slate-900 tracking-tight mb-4">
+                3. La Brecha Territorial: Dos Colombias en un solo mapa
+            </h2>
+            <p class="text-slate-600 leading-relaxed mb-6">
+                Utilizando los métodos cartográficos de clase (clasificación de <strong>Jenks / Natural Breaks</strong> en 5 intervalos), el mapa coroplético revela una desconexión territorial crítica: mientras la región central y Andina concentra contratos formales, los departamentos de la Amazonía, Orinoquía y Pacífico alcanzan niveles de vulnerabilidad extrema superiores al <strong>70%</strong>.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+                <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+                    <img src="assets/mapa_informalidad_colombia_R.png" alt="Mapa en R ggplot2" class="w-full h-auto rounded-xl border border-slate-100" loading="lazy">
+                    <p class="text-xs text-slate-500 mt-3 text-center">Renderizado con <code>ggplot2</code> + Rosa de vientos y escala DANE/IGAC.</p>
+                </div>
+                <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+                    <img src="assets/mapa_informalidad_tmap.png" alt="Mapa en R tmap" class="w-full h-auto rounded-xl border border-slate-100" loading="lazy">
+                    <p class="text-xs text-slate-500 mt-3 text-center">Renderizado temático con <code>tmap</code> + Intervalos de Jenks.</p>
+                </div>
+            </div>
+        </article>
+
+        <!-- STEP 4: EXPLORADOR CIUDADANO INTERACTIVO (PLOTLY) -->
+        <article id="interactivo" class="scroll-mt-24">
+            <div class="flex items-center gap-2 text-emerald-600 text-xs font-bold uppercase tracking-wider mb-2">
+                <i data-lucide="mouse-pointer-click" class="w-4 h-4"></i>
+                <span>Explorador Interactivo Ciudadano • Plotly</span>
+            </div>
+            <h2 class="text-3xl font-display font-extrabold text-slate-900 tracking-tight mb-4">
+                4. Semáforo Ciudadano: Explora tu departamento
+            </h2>
+            <p class="text-slate-600 leading-relaxed mb-6">
+                Pasa el cursor sobre cada barra para conocer el número estimado de trabajadores informales, la población ocupada y la distancia frente al promedio nacional (54.64%).
+            </p>
+
+            <div class="bg-white p-2 sm:p-4 rounded-2xl border border-slate-200 shadow-md">
+                <iframe src="visualizacion_interactiva_plotly.html" class="w-full h-[760px] rounded-xl border-0" title="Gráfico Interactivo Plotly"></iframe>
+            </div>
+        </article>
+
+        <!-- STEP 5: CENTRO DE CONTROL POWER BI -->
+        <article id="powerbi" class="scroll-mt-24 bg-gradient-to-br from-slate-900 to-slate-800 text-white p-8 sm:p-10 rounded-3xl border border-slate-700 shadow-xl">
+            <div class="flex items-center gap-2 text-rose-400 text-xs font-bold uppercase tracking-wider mb-3">
+                <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+                <span>Cuadro de Mando Ejecutivo • Power BI Service</span>
+            </div>
+            <h2 class="text-3xl font-display font-extrabold tracking-tight mb-4">
+                5. Tablero Oficial Publicado en Power BI Service
+            </h2>
+            <p class="text-slate-300 leading-relaxed mb-8 max-w-2xl">
+                El modelo relacional desarrollado en Power BI Desktop integra las 2 vistas de alta gerencia: <strong>Nacional y Brechas</strong> y <strong>Focalización Territorial</strong>, permitiendo filtros dinámicos multidimensionales.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-4">
+                <a href="https://app.powerbi.com/links/gvbF1pi94p?ctid=3b944d9a-1051-4685-b09d-9a95ee2dbd99&pbi_source=linkShare" target="_blank" class="px-6 py-3.5 bg-rose-600 hover:bg-rose-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-rose-500/25 transition flex items-center gap-2">
+                    <i data-lucide="external-link" class="w-5 h-5"></i>
+                    <span>Abrir Reporte Oficial en Power BI</span>
+                </a>
+                <a href="https://github.com/Juliand10x/Visualizaci-n-1---Proyecto-3/raw/main/Equipo_Duarte_Jimenez_Proyecto3_Dashboard.pbix" class="px-5 py-3.5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium rounded-xl border border-slate-600 transition flex items-center gap-2">
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    <span>Descargar archivo .pbix (31.5 MB)</span>
+                </a>
+            </div>
+        </article>
+
+        <!-- STEP 6: ENTREGABLES Y TRANSPARENCIA METODOLÓGICA -->
+        <section class="border-t border-slate-200 pt-16">
+            <h3 class="text-2xl font-display font-bold text-slate-900 mb-6">
+                Entregables Oficiales y Reproducibilidad
+            </h3>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="p-5 bg-white rounded-xl border border-slate-200 hover:border-sky-500 transition">
+                    <div class="text-sky-600 mb-2"><i data-lucide="book-open" class="w-6 h-6"></i></div>
+                    <h4 class="font-bold text-slate-900 text-base">Jupyter Notebook</h4>
+                    <p class="text-xs text-slate-500 mt-1 mb-3">Código comentado en Python con Seaborn y Plotly ejecutado al 100%.</p>
+                    <a href="https://github.com/Juliand10x/Visualizaci-n-1---Proyecto-3/blob/main/notebooks/Equipo_Duarte_Jimenez_Proyecto3_Visualizacion.ipynb" target="_blank" class="text-xs text-sky-600 font-semibold hover:underline flex items-center gap-1">Ver en GitHub <i data-lucide="chevron-right" class="w-3 h-3"></i></a>
+                </div>
+
+                <div class="p-5 bg-white rounded-xl border border-slate-200 hover:border-amber-500 transition">
+                    <div class="text-amber-600 mb-2"><i data-lucide="file-code" class="w-6 h-6"></i></div>
+                    <h4 class="font-bold text-slate-900 text-base">Scripts y Rmd</h4>
+                    <p class="text-xs text-slate-500 mt-1 mb-3">Procesamiento espacial con <code>sf</code> y mapas con <code>tmap</code> y <code>ggplot2</code>.</p>
+                    <a href="https://github.com/Juliand10x/Visualizaci-n-1---Proyecto-3/tree/main/scripts_R" target="_blank" class="text-xs text-amber-600 font-semibold hover:underline flex items-center gap-1">Ver carpeta R <i data-lucide="chevron-right" class="w-3 h-3"></i></a>
+                </div>
+
+                <div class="p-5 bg-white rounded-xl border border-slate-200 hover:border-rose-500 transition">
+                    <div class="text-rose-600 mb-2"><i data-lucide="presentation" class="w-6 h-6"></i></div>
+                    <h4 class="font-bold text-slate-900 text-base">Presentación (10 Láminas)</h4>
+                    <p class="text-xs text-slate-500 mt-1 mb-3">Storyline completo y guion oral cronometrado de 10 min para sustentación.</p>
+                    <a href="https://github.com/Juliand10x/Visualizaci-n-1---Proyecto-3/blob/main/documentos/Presentacion_Narrativa_10_Diapositivas.md" target="_blank" class="text-xs text-rose-600 font-semibold hover:underline flex items-center gap-1">Ver Diapositivas <i data-lucide="chevron-right" class="w-3 h-3"></i></a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER INSTITUCIONAL -->
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <p class="text-white font-medium">Universidad Externado de Colombia • Facultad de Finanzas, Gobierno y Relaciones Internacionales</p>
+                <p class="text-xs text-slate-500 mt-1">Visualización 1 — Docentes: Adriana Pineda Barón & Paola Moreno</p>
+                <p class="text-xs text-slate-500">Equipo: Julián Steven Duarte & Julián Camilo Jiménez</p>
+            </div>
+            <div class="flex items-center gap-6 text-xs">
+                <span>Fuente: DANE GEIH 2026 & IGAC</span>
+                <span>•</span>
+                <span>Declaración Ética IA Incluida</span>
+                <span>•</span>
+                <span>Noviembre 2026</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

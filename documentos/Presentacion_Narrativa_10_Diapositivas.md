@@ -47,7 +47,8 @@
   * **Corrección del Promedio Mensual:** De 105M de personas-mes acumuladas a **~17.5 Millones de ocupados** y **~9.55 Millones de informales** por mes (Tasa idéntica y exacta: **54.64%**).
   * **Lenguaje Ciudadano:** Reemplazo de jerga ministerial por diagnósticos comprensibles para cualquier trabajador.
   * **Trazabilidad:** Tablero publicado y funcional en Power BI Service.
-* **Enlace Oficial:** `[Ver Dashboard Interactivo en Power BI Service]`
+* **Enlace Oficial Power BI:** [Ver Dashboard Interactivo en Power BI Service](https://app.powerbi.com/links/gvbF1pi94p?ctid=3b944d9a-1051-4685-b09d-9a95ee2dbd99&pbi_source=linkShare)
+* **Plataforma Web en Producción (Vercel):** [https://webnarrativa.vercel.app](https://webnarrativa.vercel.app)
 * **Elementos Visuales:** Captura del dashboard actualizado mostrando las tarjetas KPI y el gráfico de barras por nivel educativo.
 
 ---
