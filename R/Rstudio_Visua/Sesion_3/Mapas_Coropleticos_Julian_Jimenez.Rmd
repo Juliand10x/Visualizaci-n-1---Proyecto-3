@@ -1,0 +1,493 @@
+---
+title: "Mapas_Coropleticos_5/11/26_Julian_Jimenez"
+output: html_document
+date: "2026-11-05"
+---
+
+
+
+Gestion de datos
+```{r}
+setwd(".")
+```
+
+```{r}
+getwd()
+```
+
+Configurar Librerias
+```{r, message=FALSE, warning=FALSE}
+library(sf)
+library(dplyr)
+library(ggplot2)
+library(leaflet)
+library(tmap)
+library(classInt)
+
+```
+
+```{r, message=FALSE, warning=FALSE}
+dir()
+```
+
+```{r, message=FALSE, warning=FALSE}
+bf_sf = st_read("./Base_Final", "Municipios_General")
+```
+
+```{r, message=FALSE, warning=FALSE}
+st_crs(bf_sf)
+```
+Extraer subcomando para la orinoquia
+```{r, message=FALSE, warning=FALSE}
+orinoquia_sf = subset(bf_sf, region == "Región Orinoquía", na.rm = TRUE)
+```
+
+#Mapas con GGPLOT
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(data = bf_sf) +
+  geom_sf()
+```
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(data = bf_sf) +
+  geom_sf(fill = "#A52A2A", color = "#CD3333")
+```
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(data = orinoquia_sf) +
+geom_sf(data = , fill = "#D2691E", color = "#2A1A0E") +
+  labs(
+    title = "Muncipios de la Región Orinoquía en Colombia",
+    subtitle = "Delimitación oficial sobre mapa base municipal (EPSG:9377 - Origen Nacional)",
+    caption = "Fuente: Cartografía oficial (IGAC / DANE)"
+  )
+```
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(data = orinoquia_sf) +
+  geom_sf(fill = "#FFB90F", color = "#CD950C") +
+  labs(
+    title = "División Político-Administrativa de Colombia",
+    subtitle = "Mapa base municipal (EPSG:9377 - Origen Nacional)",
+    caption = "Fuente: IGAC/DANE"
+  ) +
+  theme(
+    plot.title = element_text(face = "bold", size = 18,  color = "#8B814C"),
+    plot.subtitle = element_text(size = 12, color = "#68228B"),
+    panel.grid.major = element_line(color = "#333333", linetype = "dashed")
+  )
+```
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(data = bf_sf) +
+  geom_sf(aes(fill = region), color = "#333333", size = 0.15) +
+  scale_fill_brewer(palette = 8, name = "Región") +
+  labs(
+    title = "División Político-Administrativa de Colombia por Regiones",
+    caption = "Fuente: IGAC / DANE"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14, color = "#00FF00"),
+    legend.position = "right"
+  )
+```
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(data = bf_sf) +
+  geom_sf(aes(fill = region), color = "#333333", size = 0.15) +
+  scale_fill_brewer(palette = "Set3", name = "Región") +
+  labs(
+    title = "División Político-Administrativa de Colombia por Regiones",
+    caption = "Fuente: IGAC / DANE"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14, color = "#005528"),
+    legend.position = "right"
+  )
+```
+#Opciones de color
+
+
+```{r, message=FALSE, warning=FALSE}
+#install.packages("cols4all", dependencies = TRUE)
+#install.packages("shinyjs")
+```
+
+```{r, message=FALSE, warning=FALSE}
+#cols4all::c4a_gui()
+```
+
+```{r, message=FALSE, warning=FALSE}
+library("colorspace")
+hcl_palettes(plot = TRUE)
+```
+
+#Mapas con la librería tmap
+
+```{r, message=FALSE, warning=FALSE}
+tmap_mode("plot")
+```
+
+```{r, message=FALSE, warning=FALSE}
+tm_shape(orinoquia_sf) +
+  tm_polygons(col = "Tplg_Cc",
+              title = "Tipología Cocalera"
+              )
+```
+
+```{r, message=FALSE, warning=FALSE}
+tm_shape(orinoquia_sf) +
+  tm_polygons(
+    col = "Tplg_Cc",
+    title = "Tipología Cocalera",
+    palette = "set2",
+    border.col = "white",
+    lwd = 0.4
+  )
+```
+
+```{r, message=FALSE, warning=FALSE}
+colores_tipologia <- c(
+  "Sin Coca"   = "#FFB6C1", # rosa claro
+  "Coca No Asperjados" = "#8B814C", # Terrudo
+  "Coca Asperjados"  = "#8B2500"  # Rojo
+)
+```
+
+```{r, message=FALSE, warning=FALSE}
+tmap_mode("plot")
+
+tm_shape(orinoquia_sf) +
+  tm_polygons(
+    col = "Tplg_Cc",
+    title = "Tipología Cocalera",
+    palette = colores_tipologia, # Paleta personalizada
+    border.col = "white",
+    lwd = 0.4
+  ) +
+  #Titulo y subtitulo
+  tm_layout(
+    main.title = "Tipología Cocalera en la Región Orinoquía",
+    main.title.size = 1.1,
+    sub.title = "Clasificación de presencia territorial por municipio",
+    sub.title.size = 0.8,
+    legend.outside = TRUE,
+    legend.outside.position = "right",
+    frame = FALSE
+  ) +
+  # Escala 
+  tm_scalebar(
+  position = c("left", "bottom"),
+  text.size = 0.6) +
+  # Flecha de Norte 
+  tm_compass(
+    type = "arrow",
+    position = c("left", "top"),
+    size = 1.2
+  ) +
+  # Nota 
+  tm_credits(
+    text = "Fuente: Elaboración propia a partir de Cartografía oficial (IGAC) y datos socioeconómicos (DANE)",
+    position = c("right", "bottom"),
+    size = 0.6
+  )
+```
+
+```{r, message=FALSE, warning=FALSE}
+tmap_mode("view")
+```
+
+```{r, message=FALSE, warning=FALSE}
+tm_shape(orinoquia_sf) +
+  tm_polygons(
+    col = "Tplg_Cc",
+    title = "Tipología Cocalera",
+    palette = colores_tipologia, # Paleta personalizada
+    border.col = "white",
+    lwd = 0.4
+  ) +
+  #Titulo y subtitulo
+  tm_layout(
+    main.title = "Tipología Cocalera en la Región Orinoquía",
+    main.title.size = 1.1,
+    sub.title = "Clasificación de presencia territorial por municipio",
+    sub.title.size = 0.8,
+    legend.outside = TRUE,
+    legend.outside.position = "right",
+    frame = FALSE
+  ) +
+  # Nota 
+  tm_credits(
+    text = "Fuente: Elaboración propia a partir de Cartografía oficial (IGAC) y datos socioeconómicos (DANE)",
+    position = c("right", "bottom"),
+    size = 0.6 +
+  tm_basemap(c("OpenStreetMap", "Esri.WorldImagery"))
+  )
+```
+
+```{r, message=FALSE, warning=FALSE}
+tm_shape(orinoquia_sf) + 
+  
+  tm_fill("ind_rur", palette = "magma", title = "Índice de Ruralidad") + 
+
+  tm_borders(alpha = 0.2) + 
+
+  # tm_compass() y tm_scalebar() se omiten en modo interactivo porque Leaflet ya los maneja de forma nativa
+
+  tm_text("MPIO_CNMBR", size = 0.5, col = "grey60") + 
+
+  tm_layout(legend.text.size = 0.6, 
+
+            legend.title.size = 0.6, 
+
+            legend.position = c("right", "bottom"), 
+
+            frame = FALSE) +
+  
+  tm_basemap(c("CartoDB.DarkAll", "CartoDB.Positron", "OpenTopoMap"))
+```
+
+#Mapas Coropleticos
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(data = bf_sf) +
+  geom_sf(aes(fill = IPM_ncn)) +
+  scale_fill_viridis_c(
+    option = "-cividis",
+    name = "índice de Pobreza Multidimensional",
+  )
+```
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(data = orinoquia_sf) +
+  geom_sf(aes(fill = Ts_Hmcd), color = "white", size = 0.15) +
+  scale_fill_viridis_c(
+    option = "magma",
+    name = "Tasa (por cada 1000)",
+    na.value = "#E2E8F0"
+  ) +
+  labs(
+    title = "Tasa de homicidios",
+    subtitle = "Número de homicidios por cada 1000 habitantes",
+    caption = "Fuente: DANE | Elaboración propia"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 13),
+    legend.position = "right"
+  )
+```
+###Cuantiles
+```{r, message=FALSE, warning=FALSE}
+tm_shape(orinoquia_sf) +
+  tm_polygons(
+    col = "IPM_ncn",
+    title = "Índice de Pobreza Multidimensional",
+    palette = "Purples",
+    style = "quantile", # Clasificación por Cuantiles para la clase
+    border.col = "white",
+    lwd = 0.5
+  )
+```
+
+###Kmeans
+
+```{r, message=FALSE, warning=FALSE}
+# 1. Calcular los intervalos de corte mediante el algoritmo K-Means
+n_grupos <- 5
+cortes_km <- classIntervals(
+  bf_sf$ind_rur, 
+  n = n_grupos, 
+  style = "kmeans"
+)
+# 2. Crear la variable categórica/factor de rangos K-Means en el mapa
+bf_sf <- bf_sf %>%
+  mutate(
+    Rango_indrur = cut(
+      ind_rur, 
+      breaks = cortes_km$brks, 
+      include.lowest = TRUE,
+      dig.lab = 3
+    )
+  )
+# 3. Visualizar el mapa choropleth clasificado por K-Means
+ggplot(data = bf_sf) +
+  geom_sf(aes(fill = Rango_indrur), size = 0.1) +
+  scale_fill_viridis_d(
+    option = "magma",
+    direction = -1,
+    name = "Tasa (%) - K-Means",
+    na.value = "#E2E8F0"
+  ) +
+  labs(
+    title = "Índice de Ruralidad (Clasificación K-Means)",
+    subtitle = "Porcentaje de habitantes en zonas rurales respecto al total de la población.",
+    caption = "Fuente: DANE - GEIH | Elaboración propia"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 13),
+    legend.position = "right"
+  )
+```
+###Division Estandar
+```{r, message=FALSE, warning=FALSE}
+# 1. Calcular los intervalos basados en Desviación Estándar con classInt
+cortes_sd <- classIntervals(
+  bf_sf$IPM_ncn, 
+  style = "sd",
+  n = 5
+)
+
+# 2. Asignar los intervalos discretos a la capa geográfica
+bf_sf <- bf_sf %>%
+  mutate(
+    Rango_IPM_ncn_SD = cut(
+      IPM_ncn, 
+      breaks = cortes_sd$brks, 
+      include.lowest = TRUE,
+      dig.lab = 3
+    )
+  )
+
+# 3. Dibujar el mapa choropleth clasificado por Desviación Estándar
+ggplot(data = bf_sf) +
+  geom_sf(aes(fill = Rango_IPM_ncn_SD), size = 0.15) +
+  scale_fill_brewer(
+    palette = "BuPu",   # Opciones: "Blues", "BuPu", "PuBu"
+    direction = 1,          # Usa -1 si quieres invertir el orden de los colores
+    name = "Tasa (%) - Desv. Estándar",
+    na.value = "#E2E8F0"
+  ) +
+  labs(
+    title = "Índice de Pobreza Multidimensional (Desviación Estándar)",
+    subtitle = "Variación del IPM respecto a la media nacional",
+    caption = "Fuente: DANE | Elaboración propia"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 13),
+    legend.position = "right"
+  )
+```
+#Ahora con goddess tmap
+```{r, message=FALSE, warning=FALSE}
+tmap_mode("plot")
+```
+
+```{r, message=FALSE, warning=FALSE}
+mapa_tmap <- tm_shape(bf_sf) +
+  tm_polygons(
+    col = "IPM_ncn",
+    title = "IPM)"
+  )
+```
+
+```{r, message=FALSE, warning=FALSE}
+mapa_tmap
+```
+
+```{r, message=FALSE, warning=FALSE}
+# Construir mapa temático de desocupación con tmap
+tmap_mode("plot")
+
+mapa_tmap <- tm_shape(bf_sf) +
+  tm_polygons(
+    col = "IPM_ncn",
+    title = "IPM",
+    palette = "YlOrRd",
+    style = "quantile", # Clasificación por Cuantiles para la clase
+    border.col = "white",
+    lwd = 0.5
+  )
+
+# Desplegar mapa de tmap
+mapa_tmap
+```
+
+```{r, message=FALSE, warning=FALSE}
+mapa_tmap2 <- tm_shape(bf_sf) +
+  tm_polygons(
+    col = "IPM_ncn",
+    title = "IPM",
+    palette = "BluGrn",
+    style = "quantile",  
+    n = 4,              
+    border.col = "white",
+    lwd = 0.5
+  ) +
+  tm_layout(
+    main.title = "Distribución Territorial del IPM",
+    main.title.size = 1.1,
+    legend.position = c("right", "bottom"),
+    frame = FALSE
+  )
+# Desplegar mapa de tmap
+mapa_tmap2
+```
+
+```{r, message=FALSE, warning=FALSE}
+
+library(tmap)
+
+tmap_mode("plot")
+
+mapa_tmap <- tm_shape(bf_sf) +
+  tm_polygons(
+    col = "Cltvs__",
+    title = "Hectáreas de hoja de coca cultivadas",
+    palette = "SunsetDark",
+    style = "jenks",
+    n = 7,
+    border.col = "white",
+    lwd = 0.5
+  ) +
+  tm_layout(
+    main.title = "Distribución Territorial de los Cultivos de Hoja de Coca",
+    main.title.size = 1.1,
+    legend.position = c("right", "bottom"),
+    frame = FALSE
+  ) +
+  # Flecha del norte
+  tm_compass(
+    type = "arrow",
+    position = c("left", "top"),
+    size = 0.7
+  ) +
+  # Barra de escala
+  tm_scalebar(
+    position = c("left", "bottom")
+  )
+
+# Visualizar mapa
+mapa_tmap
+
+```
+
+```{r, message=FALSE, warning=FALSE}
+tmap_mode("view")
+
+tm_shape(orinoquia_sf) +
+  tm_polygons(
+    col = "Cltvs__",
+    title = "Cultivos de hoja de coca en Hectáreas",
+    palette = "YlOrRd",
+    style = "kmeans",            # División por K-Means sobre la variable real
+    n = 5,
+    border.col = "black",
+    lwd = 0.5,
+    alpha = 0.7,                
+    id = "MPIO_CN",           # Identificador en el tooltip al pasar el cursor
+    popup.vars = c(
+      "Cultivos de hoja de coca (Ha)" = "Cltvs__"
+    )
+  ) +
+  tm_basemap(c("CartoDB.Positron", "Esri.WorldImagery"))
+```
+
+
+
+Fin del notebook

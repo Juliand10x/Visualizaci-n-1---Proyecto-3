@@ -1,0 +1,157 @@
+library(sf)
+library(ggplot2)
+library(dplyr)
+
+# 1. Definir la ruta directa al Shapefile de Localidades de Bogotá
+ruta_shp <- "C:/Users/santi/OneDrive - Universidad Externado de Colombia/Ciencia_Datos_UEC/VisualizaciónI-CD/Sesion_04_PowerBI_RStudio/Localidades/LocalidadesBogota.shp"
+
+# 2. Cargar el objeto espacial sf
+localidades_sf <- st_read(ruta_shp, quiet = TRUE)
+
+# 3. Estandarizar nombres en la capa espacial y en el dataset de Power BI
+localidades_sf <- localidades_sf %>%
+  rename(localidad = NOMBRE_COM) %>%
+  mutate(localidad = trimws(toupper(as.character(localidad))))
+
+# 'dataset' es el dataframe que genera Power BI automáticamente
+dataset_limpio <- dataset %>%
+  mutate(localidad = trimws(toupper(as.character(localidad))))
+
+# 4. Realizar la unión relacional entre el Shapefile y los datos de Power BI
+mapa_final <- localidades_sf %>%
+  left_join(dataset_limpio, by = "localidad")
+
+# 5. Generar el mapa choropleth
+ggplot(data = mapa_final) +
+  geom_sf(aes(fill = N_ingpcugaj13), color = "#333333", size = 0.3) +
+  scale_fill_viridis_c(
+    option = "magma", 
+    name = "Tasa (%)", 
+    na.value = "#E2E8F0"
+  ) +
+  labs(
+    title = "Mapa de Ingresos por Localidades de Bogotá",
+    subtitle = "Ingresos en COP",
+    caption = "Fuente: Encuesta Multipropósito / DANE"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 12),
+    axis.text = element_blank(),
+    panel.grid = element_blank()
+  )
+  
+####################
+####################
+####################
+  SEGUNDO MAPA
+####################
+####################
+####################
+  
+  library(sf)
+library(tmap)
+library(dplyr)
+
+# 1. Definir la ruta directa al Shapefile de Localidades
+ruta_shp <- "C:/Users/santi/OneDrive - Universidad Externado de Colombia/Ciencia_Datos_UEC/VisualizaciónI-CD/Sesion_04_PowerBI_RStudio/Localidades/LocalidadesBogota.shp"
+
+# 2. Cargar la capa cartográfica sf
+localidades_sf <- st_read(ruta_shp, quiet = TRUE)
+
+# 3. Estandarizar nombres en el Shapefile y en el dataset autogenerado por Power BI
+localidades_sf <- localidades_sf %>%
+  rename(localidad = NOMBRE_COM) %>%
+  mutate(localidad = trimws(toupper(as.character(localidad))))
+
+dataset_limpio <- dataset %>%
+  mutate(localidad = trimws(toupper(as.character(localidad))))
+
+# 4. Realizar la unión relacional espacial
+mapa_final <- localidades_sf %>%
+  left_join(dataset_limpio, by = "localidad")
+
+# 5. Configurar tmap en modo de gráfico estático para Power BI
+tmap_mode("plot")
+
+# 6. Construir el mapa choropleth con clasificación K-Means
+mapa_kmeans_ingresos <- tm_shape(mapa_final) +
+  tm_polygons(
+    col = "N_ingpcugaj13",
+    title = "Ingreso Promedio",
+    palette = "Purples",
+    style = "kmeans",            # Clasificación K-Means
+    n = 5,                       # 5 intervalos
+    border.col = "white",
+    lwd = 0.5
+  ) +
+  tm_layout(
+    main.title = "Distribución del Ingreso por Localidades (K-Means)",
+    main.title.size = 1.0,
+    legend.outside = TRUE,
+    legend.outside.position = "right",
+    frame = FALSE,
+    outer.margins = c(0, 0, 0, 0)
+  )
+
+# 7. Renderizar el objeto tmap
+print(mapa_kmeans_ingresos)
+
+
+
+####################
+####################
+####################
+Maopa con burbujas
+####################
+####################
+####################
+
+library(sf)
+library(tmap)
+library(dplyr)
+
+# Cargar y preparar capas
+ruta_shp <- "C:/Users/santi/OneDrive - Universidad Externado de Colombia/Ciencia_Datos_UEC/VisualizaciónI-CD/Sesion_04_PowerBI_RStudio/Localidades/LocalidadesBogota.shp"
+
+localidades_sf <- st_read(ruta_shp, quiet = TRUE) %>%
+  rename(localidad = NOMBRE_COM) %>%
+  mutate(localidad = trimws(toupper(as.character(localidad))))
+
+mapa_final <- localidades_sf %>%
+  left_join(dataset %>% mutate(localidad = trimws(toupper(as.character(localidad)))), by = "localidad")
+
+tmap_mode("plot") # Modo estático exigido para el motor de Power BI
+
+# Construir coropleta + burbujas
+mapa_comb <- tm_shape(mapa_final) +
+  tm_polygons(
+    col = "N_pobre_ipm",
+    title = "Cuartiles IPM",
+    palette = "BuPu",
+    style = "quantile",
+    n = 5,
+    alpha = 0.65,
+    border.col = "white"
+  ) +
+  tm_symbols(
+    size = "N_trabajo_infantil",
+    col = "#CD5B45",
+    alpha = 0.6,
+    border.col = "#8B3E2F",
+    scale = 3.0,
+    title.size = "Trabajo Infantil"
+  ) +
+  tm_layout(
+    main.title = "IPM (Cuartiles) y Trabajo Infantil en Bogotá",
+    main.title.size = 0.9,
+    legend.outside = TRUE,
+    legend.outside.position = "right",
+    frame = FALSE
+  )
+
+print(mapa_comb)
+
+
+
+

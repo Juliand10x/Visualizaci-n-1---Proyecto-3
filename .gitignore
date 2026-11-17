@@ -21,5 +21,13 @@ Desktop.ini
 $RECYCLE.BIN/
 .DS_Store
 
-# Archivos pesados opcionales (descomentar si se prefiere no subir el pbix a git)
-# *.pbix
+# Archivos temporales o binarios que superan el límite de 100MB de GitHub
+*.html
+*.zip
+*.shp
+*.shx
+*.dbf
+*.sbn
+*.sbx
+!figuras/*.html
+!web_narrativa/*.html
