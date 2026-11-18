@@ -1,0 +1,26 @@
+==============================================================================
+PROYECTO 3: NARRATIVA VISUAL INTEGRADA — VISUALIZACIÓN I
+UNIVERSIDAD EXTERNADO DE COLOMBIA
+Docentes: Adriana Pineda Barón & Paola Moreno
+Estudiantes: Julián Steven Duarte & Julián Camilo Jiménez
+==============================================================================
+
+ENLACES OFICIALES DE ENTREGA Y CONSULTA EN VIVO:
+
+1. REPOSITORIO OFICIAL DE GITHUB:
+   https://github.com/Juliand10x/Visualizaci-n-1---Proyecto-3
+
+2. PRODUCTO DIGITAL NARRATIVO DESPLEGADO EN VIVO (VERCEL):
+   https://webnarrativa.vercel.app
+
+3. DASHBOARD OFICIAL EN POWER BI SERVICE:
+   https://app.powerbi.com/links/gvbF1pi94p?ctid=3b944d9a-1051-4685-b09d-9a95ee2dbd99&pbi_source=linkShare
+
+==============================================================================
+NOTAS METODOLÓGICAS Y REPRODUCIBILIDAD:
+- Datos: Gran Encuesta Integrada de Hogares (GEIH 2026) — DANE y Cartografía IGAC.
+- Tecnologías Integradas: Power BI Desktop/Service + Python (Seaborn y Plotly) + R (sf, tmap y classInt).
+- Modalidades cubiertas:
+  * Modalidad A: Presentación Narrativa de 10 diapositivas (documentos/Presentacion_Narrativa_10_Diapositivas.md).
+  * Modalidad B: Plataforma interactiva en producción web con CDN global (https://webnarrativa.vercel.app).
+==============================================================================
