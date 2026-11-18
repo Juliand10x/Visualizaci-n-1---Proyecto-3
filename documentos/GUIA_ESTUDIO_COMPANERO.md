@@ -36,7 +36,7 @@ Nuestro proyecto traduce los datos estadísticos de la **GEIH 2026 (DANE)** a un
 ### 🎙️ Bloque 2: Demostración de Herramientas y Visualizaciones (Min 3 a 8) — Julián Jiménez & Julián Duarte
 
 #### A. Power BI (Julián Duarte)
-* **Qué mostrar:** Abrir el enlace publicado [Power BI Service](https://app.powerbi.com/links/gvbF1pi94p?ctid=3b944d9a-1051-4685-b09d-9a95ee2dbd99&pbi_source=linkShare).
+* **Qué mostrar:** Abrir el enlace publicado [Power BI Service](https://app.powerbi.com/view?r=eyJrIjoiYzBlZGZlNTMtMThlZS00NjlkLWI5NWMtODE4NjRjNjUxNTdlIiwidCI6IjNiOTQ0ZDlhLTEwNTEtNDY4NS1iMDlkLTlhOTVlZTJkYmQ5OSIsImMiOjR9).
 * **Defensa Técnica ante las Docentes:**
   * *"En el Proyecto 1 teníamos la base consolidada con 105M de personas-mes acumuladas. Para este Proyecto 3, justificamos la continuidad del DAX original porque calcula con precisión la **Tasa de Informalidad oficial ponderada en 54.64%** y la tasa focalizada en jóvenes."*
   * *"La página 1 ('Nacional y Brechas') muestra la visión macro por nivel educativo y género, y la página 2 ('Focalización Territorial') permite filtrar dinámicamente cada departamento."*

@@ -1,0 +1,106 @@
+================================================================================
+LEEME — INSTRUCCIONES DE REPRODUCCIÓN Y RELACIÓN DE ENTREGABLES
+Proyecto 3: Narrativa Visual Integrada — Visualización I
+Universidad Externado de Colombia
+Equipo: Julián Steven Duarte & Julián Camilo Jiménez
+Docentes: Adriana Pineda Barón & Paola Moreno
+Fecha de Entrega: Noviembre de 2026
+================================================================================
+
+1. ENLACES OFICIALES DE CONSULTA EN VIVO
+--------------------------------------------------------------------------------
+* Dashboard en Power BI Service (Entregable 1 - Enlace Público Activo):
+  https://app.powerbi.com/view?r=eyJrIjoiYzBlZGZlNTMtMThlZS00NjlkLWI5NWMtODE4NjRjNjUxNTdlIiwidCI6IjNiOTQ0ZDlhLTEwNTEtNDY4NS1iMDlkLTlhOTVlZTJkYmQ5OSIsImMiOjR9
+
+* Experiencia Digital Web en Producción (Entregable 4 - Modalidad B):
+  https://webnarrativa.vercel.app
+
+
+2. RELACIÓN DE ENTREGABLES OBLIGATORIOS (NUMERAL 7 DEL PDF)
+--------------------------------------------------------------------------------
+1. Dashboard en Power BI:
+   - Archivo local: Equipo_Duarte_Jimenez_Proyecto3_Dashboard.pbix
+   - Enlace público funcional arriba indicado (no requiere inicio de sesión).
+
+2. Notebook de Python (Seaborn y Plotly):
+   - Notebook con código comentado y salidas ejecutadas:
+     notebooks/Equipo_Duarte_Jimenez_Proyecto3_Visualizacion.ipynb
+   - Script generador autónomo:
+     notebooks/generar_figuras.py
+   - Componente interactivo exportado:
+     figuras/visualizacion_interactiva_plotly.html
+
+3. Módulo Geoespacial en R:
+   - Documento R Markdown: scripts_R/mapa_informalidad_colombia.Rmd
+   - Script reproducible: scripts_R/generar_mapa_colombia.R
+   - Mapas temáticos exportados a 300 DPI:
+     figuras/mapa_informalidad_colombia_R.png
+     figuras/mapa_informalidad_tmap.png
+   - Capa cartográfica oficial:
+     Datos/colombia_departamentos.geojson
+
+4. Producto Narrativo Final (Modalidad B — Experiencia Digital Web Integrada):
+   - Plataforma web en producción con CDN global:
+     https://webnarrativa.vercel.app
+   - Carpeta local con archivos de la experiencia digital:
+     web_narrativa/ (index.html, vercel.json, visualizacion_interactiva_plotly.html y assets/)
+   - Integra la historia ciudadana completa: La Gran Idea, paradoja educativa,
+     brecha oculta de género, mapa de fractura territorial y cuadro de mando.
+
+5. Carpeta Organizada con Datos y Rutas Relativas:
+   - Tablas maestras procesadas de la GEIH 2026 en carpeta Datos/
+   - Rutas relativas universales configuradas para ejecución autónoma.
+
+6. Anexo Técnico de Uso de IA:
+   - Documento en PDF (exactamente 1 página, tipografía LaTeX):
+     documentos/Equipo_Duarte_Jimenez_Proyecto3_Anexo_IA.pdf
+
+7. Fuentes, Definiciones y Limitaciones:
+   - Desarrolladas en la Sección 4 de este archivo y en la sección metodológica
+     de la experiencia web.
+
+
+3. PASOS DE REPRODUCCIÓN RÁPIDA
+--------------------------------------------------------------------------------
+A) Plataforma Web (Modalidad B)
+   - Consulta inmediata en la nube: Ingresar a https://webnarrativa.vercel.app
+   - Consulta local: Abrir el archivo web_narrativa/index.html en cualquier
+     navegador web (Chrome, Edge, Firefox, Safari) o ejecutar un servidor local:
+     python -m http.server 8000 --directory web_narrativa
+
+B) Python (Versión 3.10+)
+   Dependencias requeridas: pandas, numpy, matplotlib, seaborn, plotly, nbconvert.
+
+   # 1. Regenerar figuras estáticas y HTML interactivo Plotly:
+   python notebooks/generar_figuras.py
+
+   # 2. Ejecutar y actualizar el Notebook completo:
+   jupyter nbconvert --to notebook --execute --inplace notebooks/Equipo_Duarte_Jimenez_Proyecto3_Visualizacion.ipynb
+
+C) R (Versión 4.2+)
+   Paquetes requeridos: sf, dplyr, ggplot2, tmap, classInt, scales.
+
+   # Ejecutar script que procesa el GeoJSON y renderiza los mapas a 300 DPI:
+   Rscript scripts_R/generar_mapa_colombia.R
+
+
+4. FUENTES, DEFINICIONES Y LIMITACIONES METODOLÓGICAS (ENTREGABLE 7)
+--------------------------------------------------------------------------------
+* Fuentes Oficiales:
+  - Gran Encuesta Integrada de Hogares (GEIH 2026) — DANE. Muestra probabilística
+    expandida con factor de ponderación FEX_C18 del Censo Nacional 2018.
+  - Marco Geoestadístico Nacional — IGAC / DANE (EPSG:9377 - Origen Nacional).
+
+* Definición Operativa de Informalidad:
+  - Se acoge la metodología oficial DANE / OIT basada en no cotización al
+    Sistema General de Seguridad Social en Salud y Pensiones, así como el tamaño
+    del establecimiento laboral.
+
+* Limitaciones del Análisis:
+  - Cobertura territorial validada a nivel departamental conforme a los dominios
+    estadísticos de la encuesta; no se realizan inferencias a nivel municipal
+    no cubierto por la muestra.
+  - Los resultados son de carácter estrictamente descriptivo de las condiciones
+    de empleo; no se infieren causas unívocas ni efectos de reformas legislativas
+    sin modelos contrafactuales.
+================================================================================

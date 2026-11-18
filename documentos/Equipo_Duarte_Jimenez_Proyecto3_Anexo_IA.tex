@@ -1,0 +1,111 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[margin=1.4cm,top=1.3cm,bottom=1.3cm]{geometry}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{colortbl}
+% \usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage[colorlinks=true,linkcolor=navy,urlcolor=navy]{hyperref}
+
+% Definición de paleta corporativa
+\definecolor{navy}{HTML}{1E3A8A}
+\definecolor{darkblue}{HTML}{0F2A66}
+\definecolor{crimson}{HTML}{E11D48}
+\definecolor{slate}{HTML}{475569}
+\definecolor{lightbg}{HTML}{F8FAFC}
+\definecolor{bordercolor}{HTML}{CBD5E1}
+\definecolor{accentbg}{HTML}{EFF6FF}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+
+\tcbset{
+  colback=lightbg,
+  colframe=bordercolor,
+  boxrule=0.6pt,
+  arc=3pt,
+  left=6pt,right=6pt,top=4pt,bottom=4pt
+}
+
+\begin{document}
+
+% Encabezado Institucional
+\begin{tcolorbox}[colback=navy,colframe=navy,arc=0pt,top=6pt,bottom=6pt,left=8pt,right=8pt]
+  \color{white}
+  {\fontsize{8.5pt}{10pt}\selectfont \textbf{UNIVERSIDAD EXTERNADO DE COLOMBIA \ \textbullet \ \ FACULTAD DE FINANZAS, GOBIERNO Y RELACIONES INTERNACIONALES}}\\[2pt]
+  {\fontsize{13pt}{15pt}\selectfont \textbf{ANEXO TÉCNICO: USO ÉTICO DE INTELIGENCIA ARTIFICIAL (MÁXIMO 1 PÁGINA)}}\\[2pt]
+  {\fontsize{8.5pt}{10pt}\selectfont \textbf{Asignatura:} Visualización I \ \textbullet \ \ \textbf{Docentes:} Adriana Pineda Barón \& Paola Moreno \ \textbullet \ \ \textbf{Fecha:} Noviembre de 2026}\\[1pt]
+  {\fontsize{8.5pt}{10pt}\selectfont \textbf{Equipo de Trabajo:} Julián Steven Duarte \& Julián Camilo Jiménez \ \textbullet \ \ \textbf{Proyecto:} Proyecto 3 --- Narrativa Visual Integrada}
+\end{tcolorbox}
+
+\vspace{2pt}
+
+% 1. Declaración de Responsabilidad
+{\color{navy}\fontsize{10pt}{12pt}\selectfont \textbf{1. Declaración de Transparencia y Responsabilidad Ética}}
+\vspace{1pt}
+
+{\fontsize{8.5pt}{11pt}\selectfont
+En estricto cumplimiento de las directrices académicas y éticas de la Universidad Externado de Colombia y de los lineamientos de la asignatura \textit{Visualización I}, los integrantes del equipo manifestamos haber empleado herramientas de Inteligencia Artificial Generativa bajo un rol \textbf{estrictamente instrumental, de asistencia sintáctica y optimización de flujos de código}. Declaramos categóricamente que \textbf{la responsabilidad intelectual, metodológica, estadística y comunicativa de todos los análisis, visualizaciones, interpretaciones y redacción final recae con exclusividad en los autores humanos}.}
+
+\vspace{2pt}
+
+% 2. Tabla de Herramientas y Propósito
+{\color{navy}\fontsize{10pt}{12pt}\selectfont \textbf{2. Herramientas Utilizadas y Propósito Específico}}
+\vspace{1pt}
+
+\bgroup
+\def\arraystretch{1.15}
+\fontsize{8pt}{10pt}\selectfont
+\begin{tabularx}{\textwidth}{>{\bfseries\color{navy}}p{3.2cm} X X}
+\toprule
+\rowcolor{accentbg}
+\textbf{Herramienta} & \textbf{Propósito Asistencial Concreto} & \textbf{Alcance, Límites y Control Humano} \\
+\midrule
+Google Gemini \newline (Asistente Antigravity) & 
+Asistencia en la sintaxis de scripts de visualización en Python (\textit{Seaborn} y \textit{Plotly}) y R (\textit{sf}, \textit{ggplot2} y \textit{tmap}). Sugerencias de paletas de contraste WCAG AA. & 
+No se delegó el diseño conceptual ni la interpretación ciudadana. Todos los scripts se ejecutaron, depuraron y auditaron contra la base oficial de microdatos GEIH 2026. \\
+\midrule
+Power BI Desktop / \newline DAX Query Guide & 
+Formulación y validación de la medida DAX de promedio mensual \texttt{AVERAGEX} con ponderación de factor de expansión (\texttt{FEX\_C18}). & 
+El modelado estrella (\textit{Fact Table} y dimensiones), relaciones 1:N y diseño analítico provienen íntegramente del desarrollo humano de la Entrega 1. \\
+\bottomrule
+\end{tabularx}
+\egroup
+
+\vspace{3pt}
+
+% 3. Prompts Relevantes
+{\color{navy}\fontsize{10pt}{12pt}\selectfont \textbf{3. Prompts Relevantes Empleados en el Proceso}}
+\vspace{1pt}
+
+\begin{enumerate}[label=\textbf{\arabic*.},leftmargin=12pt,itemsep=1pt,topsep=1pt]
+  \itemsep 1pt
+  \item {\fontsize{8pt}{10pt}\selectfont \textbf{Paleta Cromática Semántica y Accesibilidad (WCAG AA):} \textit{«Sugiere una paleta cromática semántica accesible (compatible con daltonismo) para representar tasas de informalidad laboral en Colombia, diferenciando formalidad en azul institucional (\#2563EB) y reservando coral rojizo (\#E11D48 / \#900C3F) con contraste superior a 4.5:1 exclusivamente para niveles y regiones en alerta crítica.»}}
+  \item {\fontsize{8pt}{10pt}\selectfont \textbf{Disolución Espacial y Clasificación en R (Sesión 3 de clase):} \textit{«¿Cómo unir y disolver eficientemente con sf en R un shapefile municipal hacia los 33 departamentos de Colombia usando group\_by(DPTO\_CN) y st\_union(), y clasificar la tasa continua en 5 intervalos naturales de Jenks (classInt) idénticos a los enseñados en clase?»}}
+  \item {\fontsize{8pt}{10pt}\selectfont \textbf{Medidas DAX de Promedio Mensual Ponderado:} \textit{«En Power BI, dado que el FEX\_C18 de la GEIH 2026 expande mes a mes y cargamos 6 meses continuos, ¿cómo formular con AVERAGEX(VALUES(DimFecha[Mes])) la medida ponderada para reportar ocupados e informales promedio mensuales sin incurrir en sobredimensionamiento semestral?»}}
+\end{enumerate}
+
+\vspace{2pt}
+
+% 4. Auditoría Crítica y Control de Alucinaciones
+{\color{navy}\fontsize{10pt}{12pt}\selectfont \textbf{4. Auditoría Crítica, Control de Alucinaciones y Criterio Propio}}
+\vspace{1pt}
+
+\begin{itemize}[leftmargin=12pt,itemsep=1pt,topsep=1pt]
+  \itemsep 1pt
+  \item {\fontsize{8pt}{10pt}\selectfont \textbf{Rigor Matemático y Trazabilidad:} Se verificó manualmente la coherencia decimal entre las 3 herramientas: tasa nacional ponderada ($54.64\%$), informalidad en educación superior ($61.26\%$) y picos territoriales (Guaviare al $75.71\%$, Casanare al $66.55\%$, Bogotá al $64.08\%$). No se aceptaron datos sintetizados.}
+  \item {\fontsize{8pt}{10pt}\selectfont \textbf{Rechazo de Atribuciones Causales Infundadas:} Se rechazaron interpretaciones automáticas que sugerían causalidad directa entre reformas legislativas e informalidad, manteniendo un enfoque descriptivo riguroso basado en el dominio estadístico de la GEIH.}
+  \item {\fontsize{8pt}{10pt}\selectfont \textbf{Enfoque Humano y Ciudadano:} Toda la narrativa, la definición de «La Gran Idea» y la orientación hacia jóvenes de 18 a 28 años fue concebida y redactada por los estudiantes, garantizando empatía y pertinencia social.}
+\end{itemize}
+
+\vfill
+\begin{center}
+  {\fontsize{7.5pt}{9pt}\selectfont \color{slate} Documento elaborado conforme al Numeral 7.6 de los términos de referencia del Proyecto 3. Certificación de autoría humana.}
+\end{center}
+
+\end{document}

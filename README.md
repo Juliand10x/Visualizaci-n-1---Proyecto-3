@@ -2,12 +2,12 @@
 **Universidad Externado de Colombia**  
 **Docentes:** Adriana Pineda Barón & Paola Moreno  
 **Equipo de Trabajo:** Julián Steven Duarte & Julián Camilo Jiménez  
-**Fecha de Entrega:** 17 de noviembre de 2026, 11:59 p.m.  
+**Fecha de Entrega:** Noviembre de 2026  
 **Fuente de Datos:** Gran Encuesta Integrada de Hogares (GEIH 2026) — DANE & Marco Geoestadístico IGAC  
 
 ### 🔗 Enlaces Oficiales de Entrega y Consulta en Vivo
-* 🌐 **Plataforma Web en Producción (Vercel — Modalidad B):** [https://webnarrativa.vercel.app](https://webnarrativa.vercel.app)
-* 📊 **Dashboard Oficial en Power BI Service:** [Ver Dashboard Interactivo](https://app.powerbi.com/links/gvbF1pi94p?ctid=3b944d9a-1051-4685-b09d-9a95ee2dbd99&pbi_source=linkShare)
+* 🌐 **Plataforma Web en Producción (Vercel — Entregable 4 / Modalidad B):** [https://webnarrativa.vercel.app](https://webnarrativa.vercel.app)
+* 📊 **Dashboard Oficial en Power BI Service (Enlace Público Activo):** [Ver Dashboard Interactivo](https://app.powerbi.com/view?r=eyJrIjoiYzBlZGZlNTMtMThlZS00NjlkLWI5NWMtODE4NjRjNjUxNTdlIiwidCI6IjNiOTQ0ZDlhLTEwNTEtNDY4NS1iMDlkLTlhOTVlZTJkYmQ5OSIsImMiOjR9)
 * 🐙 **Repositorio Oficial de GitHub:** [https://github.com/Juliand10x/Visualizaci-n-1---Proyecto-3](https://github.com/Juliand10x/Visualizaci-n-1---Proyecto-3)
 
 ---
@@ -26,22 +26,19 @@ El **Proyecto 3** traslada las competencias técnicas desarrolladas en el semest
 
 ## 📁 2. Estructura y Organización del Repositorio
 
-El proyecto mantiene rutas relativas universales y cubre tanto la **Modalidad A** (Presentación ejecutiva de 10 diapositivas) como la **Modalidad B** (Plataforma web en Vercel):
+El proyecto mantiene rutas relativas universales y adopta la **Modalidad B** (Plataforma Web Narrativa en Producción) como producto final del numeral 7.4 del PDF:
 
 ```text
 proyecto 3/
+├── LEEME.txt                         # Instrucciones de reproducción y relación de entregables en texto plano
 ├── NOTAS_ENTREGA_Y_ENLACES.txt       # Resumen de enlaces oficiales para revisión inmediata
-├── PLAN_DE_IMPLEMENTACION.md         # Plan estratégico de trabajo y encuadre comunicativo
-├── GUIA_POWER_BI.md                  # Manual paso a paso para actualización de DAX y diseño en PBI
-├── README.md                         # Documentación maestra y checklist (este archivo)
-├── LEEME.md                          # Instrucciones rápidas de reproducción y ejecución
-├── Equipo_Duarte_Jimenez_Proyecto3_Dashboard.pbix # Tablero base extraído de la entrega 1
-├── web_narrativa/                    # Plataforma web interactiva desplegada en Vercel (Modalidad B)
-│   ├── index.html                    # Aplicación web responsiva con narrativa y gráficos
+├── Equipo_Duarte_Jimenez_Proyecto3_Dashboard.pbix # Tablero maestro de Power BI Desktop (Entregable 1)
+├── web_narrativa/                    # Plataforma web interactiva desplegada en Vercel (Entregable 4 - Modalidad B)
+│   ├── index.html                    # Aplicación web responsiva con narrativa completa y gráficos
 │   ├── vercel.json                   # Configuración de despliegue en CDN global
 │   ├── visualizacion_interactiva_plotly.html # Mini-dashboard interactivo embebido
-│   └── assets/                       # Figuras y mapas en alta resolución para la web
-├── Datos/                            # Tablas preparadas y capas cartográficas
+│   └── assets/                       # Figuras y mapas en alta resolución (300 DPI) para la web
+├── Datos/                            # Tablas preparadas y capas cartográficas (Entregable 5)
 │   ├── geih_2026_departamentos.csv   # Indicadores agregados por los 33 departamentos de Colombia
 │   ├── geih_2026_educacion_edad.csv  # Tasas de informalidad por nivel educativo y rangos de edad
 │   ├── geih_2026_sexo_educacion.csv  # Cruces demográficos de género y nivel formativo
@@ -55,64 +52,56 @@ proyecto 3/
 │   ├── mapa_informalidad_colombia_R.png         # Mapa cartográfico en R (ggplot2 con etiquetas)
 │   ├── mapa_informalidad_tmap.png               # Mapa cartográfico en R (tmap + Jenks)
 │   └── visualizacion_interactiva_plotly.html    # Explorador interactivo ciudadano autocontenido
-├── notebooks/                        # Código reproducible en Python y material de clase
+├── notebooks/                        # Código reproducible en Python (Entregable 2)
 │   ├── Equipo_Duarte_Jimenez_Proyecto3_Visualizacion.ipynb # Jupyter Notebook oficial completamente ejecutado
-│   ├── crear_notebook.py             # Script de construcción programática del Notebook
-│   ├── generar_figuras.py            # Generador automatizado de gráficos y HTML interactivo
-│   └── Sesion_*.ipynb                # Notebooks pedagógicos de apoyo del curso
-├── scripts_R/                        # Código reproducible en R
+│   └── generar_figuras.py            # Generador automatizado de gráficos y HTML interactivo
+├── scripts_R/                        # Código reproducible en R (Entregable 3)
 │   ├── generar_mapa_colombia.R       # Script de R para procesamiento espacial y renderizado
-│   └── mapa_informalidad_colombia.Rmd # Documento R Markdown alineado a las Sesiones 2 y 3 de mapas
-├── R/Rstudio_Visua/                  # Talleres y scripts de apoyo de las sesiones de clase
-│   ├── Sesion_2/                     # Mapas base y datos municipales
-│   ├── Sesion_3/                     # Mapas coropléticos y cortes de Jenks
-│   └── sesion_4/                     # Integración Power BI con RStudio
-└── documentos/                       # Entregables narrativos y anexos
-    ├── Presentacion_Narrativa_10_Diapositivas.md # Storyline y láminas del producto final (Modalidad A)
+│   └── mapa_informalidad_colombia.Rmd # Documento R Markdown alineado a las Sesiones 2 y 3 de clase
+└── documentos/                       # Anexos técnicos y guías de sustentación
+    ├── Equipo_Duarte_Jimenez_Proyecto3_Anexo_IA.pdf # Anexo técnico de uso ético de IA (Entregable 6, 1 página)
+    ├── Equipo_Duarte_Jimenez_Proyecto3_Anexo_IA.tex # Código fuente LaTeX del Anexo IA
     ├── GUIA_ESTUDIO_COMPANERO.md     # Guía rápida para la sustentación oral (roles Duarte / Jiménez)
-    ├── Guia_Sustentacion_Proyecto3.md # Guion cronometrado de 10 min y banco de respuestas
-    └── Anexo_IA.md                   # Declaración ética y técnica de uso de IA (máx. 1 pág.)
+    └── Guia_Sustentacion_Proyecto3.md # Guion cronometrado de 10 min y banco de respuestas
 ```
 
 ---
 
 ## ✅ 3. Estado del Proyecto: ¿Qué está completado al 100%?
 
-1. **Despliegue Web en Vercel (Modalidad B):**
+1. **Producto Narrativo Web en Vercel (Entregable 4 - Modalidad B):**
    * Plataforma accesible públicamente en [https://webnarrativa.vercel.app](https://webnarrativa.vercel.app) con visualizaciones interactivas de Plotly embebidas, mapas cartográficos y conexión directa a Power BI Service.
-2. **Tablero en Power BI Service:**
-   * Tablero oficial publicado y disponible en [enlace directo de Power BI Service](https://app.powerbi.com/links/gvbF1pi94p?ctid=3b944d9a-1051-4685-b09d-9a95ee2dbd99&pbi_source=linkShare).
-3. **Módulo Python (Seaborn y Plotly):**
+2. **Tablero en Power BI Service (Entregable 1):**
+   * Tablero oficial publicado y disponible en [enlace público activo de Power BI Service](https://app.powerbi.com/view?r=eyJrIjoiYzBlZGZlNTMtMThlZS00NjlkLWI5NWMtODE4NjRjNjUxNTdlIiwidCI6IjNiOTQ0ZDlhLTEwNTEtNDY4NS1iMDlkLTlhOTVlZTJkYmQ5OSIsImMiOjR9) (sin barrera de inicio de sesión) y archivo local `.pbix`.
+3. **Módulo Python (Entregable 2 - Seaborn y Plotly):**
    * Notebook Jupyter oficial (`Equipo_Duarte_Jimenez_Proyecto3_Visualizacion.ipynb`) estructurado con la pedagogía de clase y ejecutado de principio a fin sin errores.
    * 3 Figuras estáticas en Seaborn exportadas en 300 DPI (`fig1`, `fig2`, `fig3`).
    * 1 Componente interactivo en Plotly con semáforo de riesgo y tooltips exportado a HTML funcional (`visualizacion_interactiva_plotly.html`).
-4. **Módulo Geoespacial en R (`sf` + `classInt` + `tmap` + `ggplot2`):**
+4. **Módulo Geoespacial en R (Entregable 3 - `sf` + `classInt` + `tmap` + `ggplot2`):**
    * Metodología de las Sesiones 2 y 3 de clase (clasificación por intervalos de *Jenks / Natural Breaks*).
    * Generación de dos mapas cartográficos en 300 DPI (`mapa_informalidad_colombia_R.png` y `mapa_informalidad_tmap.png`) con rosa de los vientos, escala y créditos oficiales.
    * Script reproducible `generar_mapa_colombia.R` y documento `mapa_informalidad_colombia.Rmd`.
-5. **Paquete Documental y Argumentativo:**
-   * Storyline completo de 10 diapositivas para Modalidad A en `Presentacion_Narrativa_10_Diapositivas.md`.
-   * Guías de sustentación oral sincronizadas (`GUIA_ESTUDIO_COMPANERO.md` y `Guia_Sustentacion_Proyecto3.md`) para 10 minutos cronometrados con roles asignados y banco de preguntas de examen.
-   * Anexo técnico de uso ético de IA (máximo 1 página).
+5. **Anexo Técnico de IA en PDF (Entregable 6):**
+   * Documento formal compilado en LaTeX de exactamente 1 página (`Equipo_Duarte_Jimenez_Proyecto3_Anexo_IA.pdf`).
+6. **Guías de Sustentación Oral:**
+   * Guías sincronizadas (`GUIA_ESTUDIO_COMPANERO.md` y `Guia_Sustentacion_Proyecto3.md`) para 10 minutos cronometrados con roles asignados y banco de preguntas de examen.
 
 ---
 
-## 📌 4. Checklist Final para la Sustentación
+## 📌 4. Checklist para la Sustentación Oral (10 Minutos)
 
-1. **Presentación Visual (Modalidad A):**  
-   * Tener abierto el documento PDF de 10 diapositivas generado a partir de `documentos/Presentacion_Narrativa_10_Diapositivas.md`.
-2. **Pestañas Listas en el Navegador para Demostración en Vivo:**
-   * Pestaña 1: [Plataforma Web en Vercel](https://webnarrativa.vercel.app)
-   * Pestaña 2: [Power BI Service](https://app.powerbi.com/links/gvbF1pi94p?ctid=3b944d9a-1051-4685-b09d-9a95ee2dbd99&pbi_source=linkShare)
-   * Pestaña 3: [Repositorio GitHub](https://github.com/Juliand10x/Visualizaci-n-1---Proyecto-3)
-3. **Repaso de Roles (Julián Duarte & Julián Jiménez):**
-   * Seguir la distribución de minutos de **`documentos/GUIA_ESTUDIO_COMPANERO.md`** (Bloque 1 apertura por Duarte, Bloque 2 demostración técnica compartida, Bloque 3 cierre y preguntas).
+1. **Pestañas Listas en el Navegador para Demostración en Vivo:**
+   * Pestaña 1: [Plataforma Web en Vercel](https://webnarrativa.vercel.app) (Recorrido narrativo guiado)
+   * Pestaña 2: [Power BI Service](https://app.powerbi.com/view?r=eyJrIjoiYzBlZGZlNTMtMThlZS00NjlkLWI5NWMtODE4NjRjNjUxNTdlIiwidCI6IjNiOTQ0ZDlhLTEwNTEtNDY4NS1iMDlkLTlhOTVlZTJkYmQ5OSIsImMiOjR9) (Demostración de interactividad y medidas DAX)
+   * Pestaña 3: [Repositorio GitHub](https://github.com/Juliand10x/Visualizaci-n-1---Proyecto-3) (Evidencia de código y reproducibilidad)
+2. **Repaso de Roles (Julián Duarte & Julián Jiménez):**
+   * Seguir la distribución de minutos de **`documentos/GUIA_ESTUDIO_COMPANERO.md`** (Apertura y contexto por Duarte, exploración técnica compartida, conclusiones e implicaciones ciudadanas por Jiménez).
 
 ---
 
-## 📊 5. Cifras Clave del Estudio para Memorizar
+## 📊 5. Cifras Clave del Estudio para Recordar
 
 * **Tasa Nacional de Informalidad:** **54.64%** (~17.5M ocupados y ~9.55M informales por mes).
 * **Paradoja Educativa:** Educación Superior (**61.26%**) y Secundaria (**61.14%**) superan ampliamente a Primaria (**52.37%**).
 * **Brecha Territorial Extrema:** **Guaviare (75.71%)** y **Casanare (66.55%)** triplican el riesgo laboral frente al centro del país.
-* **Sesgo de Género:** Hombres ocupados (**65.3%**) vs. Mujeres ocupadas (**58.2%**), con barrera previa de cuidado no remunerado en el hogar.
+* **Sesgo de Género:** Hombres ocupados (**65.3%**) vs. Mujeres ocupadas (**58.2%**), con barrera previa de exclusión por tareas del cuidado no remuneradas.

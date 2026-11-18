@@ -47,10 +47,10 @@ df_edu_tot = df_edu_tot[df_edu_tot["Nivel Educativo"] != "Sin informació"].copy
 df_edu_tot["Tasa_Informalidad"] = (df_edu_tot["FEX_Informal"] / df_edu_tot["FEX_Ocupado"]) * 100
 df_edu_tot = df_edu_tot.sort_values(by="Tasa_Informalidad", ascending=True)
 
-fig, ax = plt.subplots(figsize=(10, 5.5))
+fig, ax = plt.subplots(figsize=(10.5, 6))
 colores = ["#94A3B8" if edu != "Educación Superior" else "#E11D48" for edu in df_edu_tot["Nivel Educativo"]]
 
-bars = ax.barh(df_edu_tot["Nivel Educativo"], df_edu_tot["Tasa_Informalidad"], color=colores, height=0.55, edgecolor="none")
+bars = ax.barh(df_edu_tot["Nivel Educativo"], df_edu_tot["Tasa_Informalidad"], color=colores, height=0.52, edgecolor="none")
 
 # Etiquetas directas de datos (Gestalt: reducción de carga cognitiva)
 for bar in bars:
@@ -58,23 +58,25 @@ for bar in bars:
     y = bar.get_y() + bar.get_height() / 2
     ax.text(w + 1.2, y, f"{w:.1f}%", va='center', ha='left', fontsize=11, fontweight='bold', color="#1E293B")
 
-# Línea de referencia nacional (54.64%)
-ax.axvline(54.64, color="#475569", linestyle="--", linewidth=1.5, alpha=0.8)
-ax.text(54.64, -0.6, "Tasa Nacional Promedio (54.6%)", ha="center", va="top", fontsize=9.5, fontweight="semibold", color="#475569")
+# Línea de referencia nacional (54.64%) sin colisionar con el eje X
+ax.axvline(54.64, color="#475569", linestyle="--", linewidth=1.8, alpha=0.85)
+ax.text(54.64, 3.52, "Promedio Nacional: 54.6%", ha="center", va="bottom", fontsize=10, fontweight="bold", color="#334155",
+        bbox=dict(boxstyle="round,pad=0.3", facecolor="#F1F5F9", edgecolor="#CBD5E1", alpha=0.9))
 
-# Anotación explicativa ciudadana
+# Anotación explicativa ciudadana (ubicada con suficiente margen visual)
 ax.annotate(
-    "¡La Paradoja Colombiana!\n6 de cada 10 graduados con educación\nsuperior están atrapados en contratos\ninformales o prestación de servicios.",
-    xy=(61.26, 3), xytext=(35, 2.3),
+    "¡La Paradoja Colombiana!\n6 de cada 10 graduados con educación\nsuperior están en informalidad o rebusque.",
+    xy=(61.26, 3), xytext=(24, 2.1),
     arrowprops=dict(facecolor="#E11D48", shrink=0.08, width=1.5, headwidth=7),
-    fontsize=9.5, fontweight="medium", color="#9F1239",
-    bbox=dict(boxstyle="round,pad=0.5", facecolor="#FFE4E6", edgecolor="#FDA4AF", alpha=0.9)
+    fontsize=9.5, fontweight="semibold", color="#9F1239",
+    bbox=dict(boxstyle="round,pad=0.5", facecolor="#FFE4E6", edgecolor="#FDA4AF", alpha=0.95)
 )
 
 ax.set_title("La Paradoja Educativa: Estudiar Más Ya No Garantiza Formalidad en Colombia", fontsize=13, fontweight='bold', color="#0F172A", pad=15, loc='left')
 ax.set_xlabel("Tasa de Informalidad Laboral (%)", fontsize=10.5, color="#334155", labelpad=10)
 ax.set_ylabel("", fontsize=10)
 ax.set_xlim(0, 75)
+ax.set_ylim(-0.6, 3.9)
 ax.tick_params(colors="#334155", labelsize=10.5)
 sns.despine(left=True, bottom=True)
 ax.xaxis.grid(True, linestyle=":", alpha=0.6, color="#CBD5E1")
@@ -94,7 +96,7 @@ df_pvt = df_sex_edu[df_sex_edu["Nivel Educativo"] != "Sin informació"].pivot(
     index="Nivel Educativo", columns="Sexo", values="Tasa_Informalidad"
 ).loc[["Ninguno / Preescolar", "Primaria", "Secundaria / Media", "Educación Superior"]]
 
-fig, ax = plt.subplots(figsize=(10, 6))
+fig, ax = plt.subplots(figsize=(10.5, 6))
 y_pos = np.arange(len(df_pvt))
 
 # Dibujar líneas conectoras (Dumbbell chart)
@@ -102,34 +104,26 @@ for i, (idx, row) in enumerate(df_pvt.iterrows()):
     ax.plot([row["Mujer"], row["Hombre"]], [i, i], color="#CBD5E1", linewidth=3.5, zorder=1)
 
 # Puntos para Mujeres y Hombres
-ax.scatter(df_pvt["Mujer"], y_pos, color="#9333EA", s=180, label="Mujeres", zorder=2, edgecolors="white", linewidths=1.5)
-ax.scatter(df_pvt["Hombre"], y_pos, color="#2563EB", s=180, label="Hombres", zorder=2, edgecolors="white", linewidths=1.5)
+ax.scatter(df_pvt["Mujer"], y_pos, color="#9333EA", s=190, label="Mujeres", zorder=2, edgecolors="white", linewidths=1.5)
+ax.scatter(df_pvt["Hombre"], y_pos, color="#2563EB", s=190, label="Hombres", zorder=2, edgecolors="white", linewidths=1.5)
 
 # Etiquetas de datos en cada punto
 for i, (idx, row) in enumerate(df_pvt.iterrows()):
-    ax.text(row["Mujer"] - 2.0, i, f"{row['Mujer']:.1f}%", va='center', ha='right', fontsize=9.5, fontweight='bold', color="#7E22CE")
-    ax.text(row["Hombre"] + 2.0, i, f"{row['Hombre']:.1f}%", va='center', ha='left', fontsize=9.5, fontweight='bold', color="#1D4ED8")
+    ax.text(row["Mujer"] - 2.2, i, f"{row['Mujer']:.1f}%", va='center', ha='right', fontsize=9.5, fontweight='bold', color="#7E22CE")
+    ax.text(row["Hombre"] + 2.2, i, f"{row['Hombre']:.1f}%", va='center', ha='left', fontsize=9.5, fontweight='bold', color="#1D4ED8")
     # Texto de brecha
     brecha = row["Hombre"] - row["Mujer"]
-    ax.text((row["Mujer"] + row["Hombre"]) / 2, i + 0.22, f"Brecha: {brecha:.1f} pts", va='center', ha='center', fontsize=8.5, color="#64748B", fontstyle='italic')
+    ax.text((row["Mujer"] + row["Hombre"]) / 2, i + 0.24, f"Brecha: {brecha:.1f} pts", va='center', ha='center', fontsize=8.5, color="#64748B", fontstyle='italic')
 
 ax.set_yticks(y_pos)
 ax.set_yticklabels(df_pvt.index, fontsize=10.5, fontweight="semibold", color="#1E293B")
-ax.set_xlim(10, 80)
-ax.set_xlabel("Tasa de Informalidad (%)", fontsize=10.5, color="#334155", labelpad=10)
-ax.set_title("Brecha de Género en la Ocupación: La Tasa en Hombres Supera a Mujeres por Urgencia Económica", fontsize=12.5, fontweight='bold', color="#0F172A", pad=15, loc='left')
+ax.set_xlim(5, 82)
+ax.set_ylim(-0.6, 3.6)
+ax.set_xlabel("Tasa de Informalidad (%)\n\nNota Ciudadana: La menor tasa en mujeres no significa mayor bienestar; refleja exclusión previa hacia labores de cuidado no remuneradas.", 
+              fontsize=9.5, color="#334155", labelpad=10)
+ax.set_title("Brecha de Género en la Ocupación: La Tasa en Hombres Supera a Mujeres por Urgencia Económica", fontsize=12, fontweight='bold', color="#0F172A", pad=15, loc='left')
 
-# Cuadro explicativo sobre la paradoja de género
-ax.text(
-    0.02, 0.05,
-    "Nota Ciudadana: La menor tasa en mujeres no significa mayor bienestar laboral.\n"
-    "Refleja que millones de mujeres son excluidas previamente del mercado para asumir\n"
-    "trabajo doméstico y de cuidado no remunerado sin ingresos propios.",
-    transform=ax.transAxes, fontsize=8.5, color="#475569",
-    bbox=dict(boxstyle="round,pad=0.5", facecolor="#F8FAFC", edgecolor="#E2E8F0")
-)
-
-ax.legend(loc="upper right", frameon=True, facecolor="white", edgecolor="#E2E8F0")
+ax.legend(loc="lower right", bbox_to_anchor=(0.98, 0.08), frameon=True, facecolor="white", edgecolor="#CBD5E1", fontsize=10)
 sns.despine(left=True, bottom=True)
 ax.xaxis.grid(True, linestyle=":", alpha=0.6, color="#CBD5E1")
 ax.yaxis.grid(False)
@@ -144,7 +138,7 @@ print(f"Gráfico 2 guardado en: {fig2_path}")
 # GRÁFICO 3 (SEABORN - COMPLEMENTARIO): EVOLUCIÓN MENSUAL EN 2026
 # ==============================================================================
 print("Generando Gráfico 3 (Seaborn)...")
-fig, ax = plt.subplots(figsize=(9, 4.5))
+fig, ax = plt.subplots(figsize=(9.5, 4.8))
 
 ax.plot(df_m["Nombre_Mes"], df_m["Tasa_Informalidad"], marker="o", color="#0284C7", linewidth=2.5, markersize=8, label="Tasa Mensual")
 ax.fill_between(df_m["Nombre_Mes"], 50, df_m["Tasa_Informalidad"], color="#BAE6FD", alpha=0.35)
@@ -157,9 +151,9 @@ for _, r in df_m.iterrows():
 ax.scatter(["Mayo"], [55.50], color="#DC2626", s=130, zorder=5)
 ax.annotate(
     "Pico Anual (Mayo):\n55.50% de informalidad",
-    xy=("Mayo", 55.50), xytext=("Abril", 55.8),
+    xy=("Mayo", 55.50), xytext=("Marzo", 56.1),
     arrowprops=dict(facecolor="#DC2626", shrink=0.08, width=1.2, headwidth=6),
-    fontsize=8.5, fontweight="bold", color="#B91C1C",
+    fontsize=9, fontweight="bold", color="#B91C1C",
     bbox=dict(boxstyle="round,pad=0.3", facecolor="#FEE2E2", edgecolor="#FCA5A5")
 )
 
