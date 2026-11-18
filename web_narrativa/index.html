@@ -70,8 +70,9 @@
             </div>
             <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-300">
                 <a href="#gran-idea" class="hover:text-white transition">La Gran Idea</a>
-                <a href="#paradoja" class="hover:text-white transition">Paradoja Educativa</a>
-                <a href="#genero" class="hover:text-white transition">Brecha de Género</a>
+                <a href="#paradoja" class="hover:text-white transition">Paradoja</a>
+                <a href="#genero" class="hover:text-white transition">Género</a>
+                <a href="#temporal" class="hover:text-white transition">Tendencia</a>
                 <a href="#territorio" class="hover:text-white transition">Territorio (R)</a>
                 <a href="#interactivo" class="hover:text-white transition">Explorador (Plotly)</a>
                 <a href="#powerbi" class="hover:text-white transition">Power BI</a>
@@ -221,14 +222,38 @@
             </div>
         </article>
 
-        <!-- STEP 3: MAPA CARTOGRÁFICO TERRITORIAL (R - SF + TMAP / GGPLOT2) -->
+        <!-- STEP 3: EVOLUCIÓN TEMPORAL (PYTHON - SEABORN III) -->
+        <article id="temporal" class="scroll-mt-24">
+            <div class="flex items-center gap-2 text-sky-600 text-xs font-bold uppercase tracking-wider mb-2">
+                <i data-lucide="trending-up" class="w-4 h-4"></i>
+                <span>Evidencia en Python • Seaborn III</span>
+            </div>
+            <h2 class="text-3xl font-display font-extrabold text-slate-900 tracking-tight mb-4">
+                3. La Trayectoria Temporal: Deterioro y Alerta en el Semestre (Enero - Junio 2026)
+            </h2>
+            <p class="text-slate-600 leading-relaxed mb-6">
+                Lejos de ser un fenómeno estático, la precariedad laboral mostró un deterioro continuo durante la primera mitad de 2026. La informalidad subió desde 53.8% en enero hasta alcanzar su <strong>pico máximo anual en mayo con 55.50%</strong> (~9.7 millones de trabajadores informales), antes de registrar un leve ajuste en junio (54.85%).
+            </p>
+
+            <div class="bg-white p-4 sm:p-6 rounded-2xl border border-slate-200 shadow-sm">
+                <img src="assets/fig3_evolucion_mensual_seaborn.png" alt="Evolución Mensual Seaborn" class="w-full h-auto rounded-xl border border-slate-100" loading="lazy">
+                <div class="mt-4 flex flex-col sm:flex-row sm:items-center justify-between text-xs text-slate-500 border-t border-slate-100 pt-3 gap-2">
+                    <span><strong>Serie Temporal:</strong> Seguimiento mensual de la GEIH 2026 ponderada por FEX_C18.</span>
+                    <span class="inline-flex items-center gap-1 text-slate-700 font-medium">
+                        <i data-lucide="alert-triangle" class="w-3.5 h-3.5 text-rose-500"></i> Pico de alerta en Mayo (55.50%)
+                    </span>
+                </div>
+            </div>
+        </article>
+
+        <!-- STEP 4: MAPA CARTOGRÁFICO TERRITORIAL (R - SF + TMAP / GGPLOT2) -->
         <article id="territorio" class="scroll-mt-24">
             <div class="flex items-center gap-2 text-amber-600 text-xs font-bold uppercase tracking-wider mb-2">
                 <i data-lucide="map" class="w-4 h-4"></i>
                 <span>Evidencia Espacial en R • sf & tmap</span>
             </div>
             <h2 class="text-3xl font-display font-extrabold text-slate-900 tracking-tight mb-4">
-                3. La Brecha Territorial: Dos Colombias en un solo mapa
+                4. La Brecha Territorial: Dos Colombias en un solo mapa
             </h2>
             <p class="text-slate-600 leading-relaxed mb-6">
                 Utilizando los métodos cartográficos de clase (clasificación de <strong>Jenks / Natural Breaks</strong> en 5 intervalos), el mapa coroplético revela una desconexión territorial crítica: mientras la región central y Andina concentra contratos formales, los departamentos de la Amazonía, Orinoquía y Pacífico alcanzan niveles de vulnerabilidad extrema superiores al <strong>70%</strong>.
@@ -246,32 +271,32 @@
             </div>
         </article>
 
-        <!-- STEP 4: EXPLORADOR CIUDADANO INTERACTIVO (PLOTLY) -->
+        <!-- STEP 5: EXPLORADOR CIUDADANO INTERACTIVO (PLOTLY) -->
         <article id="interactivo" class="scroll-mt-24">
             <div class="flex items-center gap-2 text-emerald-600 text-xs font-bold uppercase tracking-wider mb-2">
                 <i data-lucide="mouse-pointer-click" class="w-4 h-4"></i>
                 <span>Explorador Interactivo Ciudadano • Plotly</span>
             </div>
             <h2 class="text-3xl font-display font-extrabold text-slate-900 tracking-tight mb-4">
-                4. Semáforo Ciudadano: Explora tu departamento
+                5. Semáforo Ciudadano: Explora tu departamento
             </h2>
             <p class="text-slate-600 leading-relaxed mb-6">
                 Pasa el cursor sobre cada barra para conocer el número estimado de trabajadores informales, la población ocupada y la distancia frente al promedio nacional (54.64%).
             </p>
 
             <div class="bg-white p-2 sm:p-4 rounded-2xl border border-slate-200 shadow-md">
-                <iframe src="visualizacion_interactiva_plotly.html" class="w-full h-[760px] rounded-xl border-0" title="Gráfico Interactivo Plotly"></iframe>
+                <iframe src="visualizacion_interactiva_plotly.html" class="w-full h-[830px] rounded-xl border-0" title="Gráfico Interactivo Plotly"></iframe>
             </div>
         </article>
 
-        <!-- STEP 5: CENTRO DE CONTROL POWER BI -->
+        <!-- STEP 6: CENTRO DE CONTROL POWER BI -->
         <article id="powerbi" class="scroll-mt-24 bg-gradient-to-br from-slate-900 to-slate-800 text-white p-8 sm:p-10 rounded-3xl border border-slate-700 shadow-xl">
             <div class="flex items-center gap-2 text-rose-400 text-xs font-bold uppercase tracking-wider mb-3">
                 <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
                 <span>Cuadro de Mando Ejecutivo • Power BI Service</span>
             </div>
             <h2 class="text-3xl font-display font-extrabold tracking-tight mb-4">
-                5. Tablero Oficial Publicado en Power BI Service
+                6. Tablero Oficial Publicado en Power BI Service
             </h2>
             <p class="text-slate-300 leading-relaxed mb-8 max-w-2xl">
                 El modelo relacional desarrollado en Power BI Desktop integra las 2 vistas de alta gerencia: <strong>Nacional y Brechas</strong> y <strong>Focalización Territorial</strong>, permitiendo filtros dinámicos multidimensionales.
@@ -295,11 +320,11 @@
                 Entregables Oficiales y Reproducibilidad
             </h3>
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div class="p-5 bg-white rounded-xl border border-slate-200 hover:border-sky-500 transition">
                     <div class="text-sky-600 mb-2"><i data-lucide="book-open" class="w-6 h-6"></i></div>
                     <h4 class="font-bold text-slate-900 text-base">Jupyter Notebook</h4>
-                    <p class="text-xs text-slate-500 mt-1 mb-3">Código comentado en Python con Seaborn y Plotly ejecutado al 100%.</p>
+                    <p class="text-xs text-slate-500 mt-1 mb-3">Código en Python con Seaborn y Plotly ejecutado al 100%.</p>
                     <a href="https://github.com/Juliand10x/Visualizaci-n-1---Proyecto-3/blob/main/notebooks/Equipo_Duarte_Jimenez_Proyecto3_Visualizacion.ipynb" target="_blank" class="text-xs text-sky-600 font-semibold hover:underline flex items-center gap-1">Ver en GitHub <i data-lucide="chevron-right" class="w-3 h-3"></i></a>
                 </div>
 
@@ -315,6 +340,13 @@
                     <h4 class="font-bold text-slate-900 text-base">Anexo Ético de IA</h4>
                     <p class="text-xs text-slate-500 mt-1 mb-3">Declaración de autoría humana, límites y auditoría crítica en PDF (1 pág).</p>
                     <a href="https://github.com/Juliand10x/Visualizaci-n-1---Proyecto-3/blob/main/documentos/Equipo_Duarte_Jimenez_Proyecto3_Anexo_IA.pdf" target="_blank" class="text-xs text-rose-600 font-semibold hover:underline flex items-center gap-1">Ver Anexo IA <i data-lucide="chevron-right" class="w-3 h-3"></i></a>
+                </div>
+
+                <div class="p-5 bg-white rounded-xl border border-slate-200 hover:border-emerald-500 transition">
+                    <div class="text-emerald-600 mb-2"><i data-lucide="bar-chart-2" class="w-6 h-6"></i></div>
+                    <h4 class="font-bold text-slate-900 text-base">Power BI Dashboard</h4>
+                    <p class="text-xs text-slate-500 mt-1 mb-3">Tablero interactivo oficial en la nube y archivo local .pbix.</p>
+                    <a href="https://app.powerbi.com/view?r=eyJrIjoiYzBlZGZlNTMtMThlZS00NjlkLWI5NWMtODE4NjRjNjUxNTdlIiwidCI6IjNiOTQ0ZDlhLTEwNTEtNDY4NS1iMDlkLTlhOTVlZTJkYmQ5OSIsImMiOjR9" target="_blank" class="text-xs text-emerald-600 font-semibold hover:underline flex items-center gap-1">Ver Dashboard <i data-lucide="chevron-right" class="w-3 h-3"></i></a>
                 </div>
             </div>
         </section>
