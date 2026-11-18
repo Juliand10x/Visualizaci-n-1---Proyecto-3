@@ -31,3 +31,4 @@ $RECYCLE.BIN/
 *.sbx
 !figuras/*.html
 !web_narrativa/*.html
+!index.html
